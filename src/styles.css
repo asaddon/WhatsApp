@@ -3,7 +3,10 @@
 @import "tailwindcss/utilities";
 
 body {
-  font-family: sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased; /* Improve font rendering */
+  -moz-osx-font-smoothing: grayscale; /* Improve font rendering */
+  text-rendering: optimizeLegibility; /* Improve text rendering */
 }
 
 @keyframes bounce {
@@ -32,8 +35,7 @@ body {
   width: 100%;
   z-index: 0;
   opacity: 0.08;
-  background-image: url(https://elfsight.com/assets/chats/patterns/whatsapp.png);
-}
+ }
 
 .chat-box {
   padding: 7px 14px 6px;
@@ -137,7 +139,7 @@ body {
 }
 
 .replies-in {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 18px;
   margin-top: 4px;
   color: rgba(255, 255, 255, 1.5);
