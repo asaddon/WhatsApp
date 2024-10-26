@@ -1,6 +1,6 @@
 import "./styles.css";
 import whatsappSvg from "./whatsapp.svg";
-import whatsappSvgBlack from "./whatsapp.svg";
+import whatsappSvgBlack from "./whatsappblack.svg";
 import crossSvg from "./cross.svg";
 
 class WAChatBox {
