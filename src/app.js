@@ -40,6 +40,7 @@ class WAChatBox {
     this.user = user;
     this.text = text;
     this.button_text = button_text;
+    this.chat_name = chat_name;
     this.iframe = document.createElement("iframe");
     this.iframe.onload = this.iframeLoaded;
     this.iframe.src = "about:blank";
