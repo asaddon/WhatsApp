@@ -116,7 +116,6 @@ class WAChatBox {
               <div className="chat-name">Nancy</div>
               <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
              <div className="chat-time">{this.formatTime(new Date())}</div>
-              </div>
             </div>
           </div>
           <div className="bg-slate-900">
