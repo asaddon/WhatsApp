@@ -80,7 +80,7 @@ class WAChatBox {
   render = () => {
     return (
       <div className="fixed bottom-1 right-0 p-3" id="full-waBox">
-        <div className="max-w-sm overflow-hidden rounded-lg bg-white shadow-lg" style="display: none" id="wa-box">
+        <div className="max-w-sm overflow-hidden rounded-lg bg-slate-900 shadow-lg" style="display: none" id="wa-box">
           <div className="relative flex p-8 py-4">
             <div className="relative">
               <img src={this.user.avatar} alt="" className="h-16 rounded-full" />
@@ -96,14 +96,14 @@ class WAChatBox {
               </a>
             </div>
           </div>
-          <div className="chat-bg relative bg-[#E6DDD4] p-7">
+          <div className="chat-bg relative bg-slate-900 p-7">
             <div className="chat-box">
               <div className="chat-name">Nancy</div>
               <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
               <div className="chat-time">13:25</div>
             </div>
           </div>
-          <div className="bg-white">
+          <div className="bg-slate-900">
             <div>
               <a className="hover:no-underline" id="open-wa">
                 <div className="chat-btn">
