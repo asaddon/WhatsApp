@@ -100,7 +100,7 @@ body {
   border-radius: 24px;
   border: none;
   background: rgb(0, 201, 98);
-  color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 1);
   font-size: 15px;
   font-weight: 700;
   line-height: 20px;
