@@ -10,7 +10,20 @@ class WAChatBox {
   user = null;
   text = null;
   button_text = null;
+  formatTime(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
 
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+
+    // Add leading zeros to minutes if needed
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${hours}:${minutes} ${ampm}`;
+  }
   constructor({
     link = "https://wa.me/919999999999",
     user = {
@@ -102,7 +115,8 @@ class WAChatBox {
             <div className="chat-box">
               <div className="chat-name">Nancy</div>
               <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
-              <div className="chat-time">13:25</div>
+             <div className="chat-time">{this.formatTime(new Date())}</div>
+              </div>
             </div>
           </div>
           <div className="bg-slate-900">
