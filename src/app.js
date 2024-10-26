@@ -9,6 +9,7 @@ class WAChatBox {
   link = null;
   user = null;
   text = null;
+  chat_name = null;
   button_text = null;
   formatTime(date) {
     let hours = date.getHours();
@@ -33,6 +34,7 @@ class WAChatBox {
     },
     text = `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
     button_text = "Need Help?",
+    chat_name = "Support",
   }) {
     this.link = link;
     this.user = user;
@@ -113,9 +115,9 @@ class WAChatBox {
           </div>
           <div className="chat-bg relative bg-slate-900 p-7">
             <div className="chat-box">
-              <div className="chat-name">Nancy</div>
-              <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
-             <div className="chat-time">{this.formatTime(new Date())}</div>
+            <div className="chat-name">{this.chat_name}</div>
+            <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
+            <div className="chat-time">{this.formatTime(new Date())}</div>
             </div>
           </div>
           <div className="bg-slate-900">
