@@ -30,6 +30,8 @@ class WAChatBox {
     this.iframe.src = "about:blank";
     document.body.append(this.iframe);
     this.iframe.style.position = "fixed";
+    this.iframe.style.top = "50%";
+    this.iframe.style.transform = "translateY(-50%)";
     this.iframe.style.bottom = "0";
     this.iframe.style.right = "0";
     this.iframe.style.maxWidth = "100%";
