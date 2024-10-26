@@ -172,7 +172,7 @@ class WAChatBox {
             <div>
               <a className="hover:no-underline" id="open-wa">
                 <div className="chat-btn">
-                  <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvgBlack }} />
+                  <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappblack.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
                   Start Chat
                 </div>
               </a>
