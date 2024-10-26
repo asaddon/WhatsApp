@@ -179,7 +179,7 @@ class WAChatBox {
           </div>
         </div>
         <div 
-          className="relative float-right my-4 flex cursor-pointer justify-center rounded-full bg-black p-1 font -semibold text-white need-btn" 
+          className="relative float-right my-4 flex cursor-pointer justify-center rounded-full bg-black p-1 font -semibold text-white need-btn bounce" 
           id="toggleWaBox"
           onClick={(e) => e.stopPropagation()}
         >
