@@ -35,8 +35,8 @@ class WAChatBox {
         waBox.classList.remove("show");
         waBox.classList.add("hide");
         setTimeout(() => {
-          this.iframe.style.width = "200px";
-          this.iframe.style.height = "100px";
+          this.iframe.style.width = "300px";
+          this.iframe.style.height = "200px";
         }, 500);
       }
     }
@@ -68,8 +68,8 @@ class WAChatBox {
     this.iframe.style.bottom = "0";
     this.iframe.style.right = "0";
     this.iframe.style.maxWidth = "100%";
-    this.iframe.style.width = "200px";
-    this.iframe.style.height = "100px";
+    this.iframe.style.width = "300px";
+    this.iframe.style.height = "200px";
     this.iframe.style.border = "none";
     this.iframe.style.zIndex = "999999999";
 
@@ -117,8 +117,8 @@ class WAChatBox {
           iframeDocument.querySelector("#wa-box").classList.remove("show");
           iframeDocument.querySelector("#wa-box").classList.add("hide");
           setTimeout(() => {
-            this.iframe.style.width = "200px";
-            this.iframe.style.height = "100px";
+            this.iframe.style.width = "300px";
+            this.iframe.style.height = "200px";
           }, 500);
         }
       });
