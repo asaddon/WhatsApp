@@ -15,11 +15,8 @@ class WAChatBox {
     let minutes = date.getMinutes();
     const ampm = hours >= 12 ? 'PM' : 'AM';
 
-    // Convert to 12-hour format
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-
-    // Add leading zeros to minutes if needed
+    hours = hours ? hours : 12;
     minutes = minutes < 10 ? '0' + minutes : minutes;
 
     return `${hours}:${minutes} ${ampm}`;
@@ -29,7 +26,6 @@ class WAChatBox {
     const waBox = iframeDocument.querySelector("#wa-box");
     const toggleButton = iframeDocument.querySelector("#toggleWaBox");
     
-    // Check if the click was inside the widget or toggle button
     if (waBox && waBox.classList.contains("show")) {
       const isClickInside = event.target.closest("#wa-box") || 
                            event.target.closest("#toggleWaBox") ||
@@ -77,7 +73,6 @@ class WAChatBox {
     this.iframe.style.border = "none";
     this.iframe.style.zIndex = "999999999";
 
-    // Add click event listener to main document
     document.addEventListener("click", (e) => {
       if (this.iframe.contentDocument) {
         this.handleClickOutside(e, this.iframe.contentDocument);
@@ -90,19 +85,18 @@ class WAChatBox {
     iframeDocument.body.append(this.render());
     iframeDocument.body.append(chatBoxStyle);
 
-    // Add click event listener to iframe document
     iframeDocument.addEventListener("click", (e) => {
       this.handleClickOutside(e, iframeDocument);
     });
 
     iframeDocument.body.querySelector("#open-wa").onclick = (e) => {
-      e.stopPropagation(); // Prevent closing when clicking chat button
+      e.stopPropagation();
       this.link && window.open(this.link, "popup", "width=600,height=600");
     };
 
     iframeDocument.querySelectorAll("#toggleWaBox").forEach((el) => {
       el.addEventListener("click", (e) => {
-        e.stopPropagation(); // Prevent click from bubbling up
+        e.stopPropagation();
         let action = "show";
         if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
           action = "hide";
@@ -130,7 +124,6 @@ class WAChatBox {
       });
     });
 
-    // Prevent closing when clicking inside the chat box
     iframeDocument.querySelector("#wa-box").addEventListener("click", (e) => {
       e.stopPropagation();
     });
@@ -178,18 +171,27 @@ class WAChatBox {
             </div>
           </div>
         </div>
-        <div 
-          className="relative float-right my-4 flex cursor-pointer justify-center rounded-full bg-black p-1 font -semibold text-white need-btn bounce" 
-          id="toggleWaBox"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className={this.button_text ? "flex mx-4" : "flex"}>
-            <div className="chat-whatsapp-icon">
-              <div className="w-5 h-5" dangerouslySetInnerHTML={{ __html: whatsappSvg }} />
-            </div>
-            {this.button_text ? <div className="ml-2 flex items-center justify-center">{this.button_text}</div> : ""}
+        <div className="relative float-right my-4 flex cursor-pointer group">
+          {/* Tooltip */}
+          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            We're on WhatsApp {/* Triangle pointer */}
+            <div className="absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
           </div>
-          <div className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-[#ff0000]"></div>
+          
+          {/* Existing button */}
+          <div 
+            className="relative flex cursor-pointer justify-center rounded-full bg-black p-1 font-semibold text-white need-btn bounce" 
+            id="toggleWaBox"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={this.button_text ? "flex mx-4" : "flex"}>
+              <div className="chat-whatsapp-icon">
+                <div className="w-5 h-5" dangerouslySetInnerHTML={{ __html: whatsappSvg }} />
+              </div>
+              {this.button_text ? <div className="ml-2 flex items-center justify-center">{this.button_text}</div> : ""}
+            </div>
+            <div className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-[#ff0000]"></div>
+          </div>
         </div>
       </div>
     );
