@@ -9,6 +9,7 @@ class WAChatBox {
   text = null;
   chat_name = null;
   button_text = null;
+  showTooltip = true; // New state for tooltip visibility
 
   formatTime(date) {
     let hours = date.getHours();
@@ -35,8 +36,8 @@ class WAChatBox {
         waBox.classList.remove("show");
         waBox.classList.add("hide");
         setTimeout(() => {
-          this.iframe.style.width = "300px";
-          this.iframe.style.height = "200px";
+          this.iframe.style.width = "300px"; // Updated width
+          this.iframe.style.height = "100px";
         }, 500);
       }
     }
@@ -68,8 +69,8 @@ class WAChatBox {
     this.iframe.style.bottom = "0";
     this.iframe.style.right = "0";
     this.iframe.style.maxWidth = "100%";
-    this.iframe.style.width = "300px";
-    this.iframe.style.height = "200px";
+    this.iframe.style.width = "300px"; // Updated width
+    this.iframe.style.height = "100px";
     this.iframe.style.border = "none";
     this.iframe.style.zIndex = "999999999";
 
@@ -78,6 +79,18 @@ class WAChatBox {
         this.handleClickOutside(e, this.iframe.contentDocument);
       }
     });
+
+    // Hide tooltip after 5 seconds
+    setTimeout(() => {
+      this.showTooltip = false;
+      if (this.iframe.contentDocument) {
+        const tooltip = this.iframe.contentDocument.querySelector("#wa-tooltip");
+        if (tooltip) {
+          tooltip.classList.remove("opacity-100");
+          tooltip.classList.add("opacity-0");
+        }
+      }
+    }, 5000);
   }
 
   iframeLoaded = () => {
@@ -117,8 +130,8 @@ class WAChatBox {
           iframeDocument.querySelector("#wa-box").classList.remove("show");
           iframeDocument.querySelector("#wa-box").classList.add("hide");
           setTimeout(() => {
-            this.iframe.style.width = "300px";
-            this.iframe.style.height = "200px";
+            this.iframe.style.width = "300px"; // Updated width
+            this.iframe.style.height = "100px";
           }, 500);
         }
       });
@@ -167,14 +180,16 @@ class WAChatBox {
                   <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvg.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
                   Start Chat
                 </div>
-              </a>
-            </div>
+              </a> </div>
           </div>
         </div>
         <div className="relative float-right my-4 flex cursor-pointer group">
           {/* Tooltip */}
-          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            We're on WhatsApp {/* Triangle pointer */}
+          <div 
+            id="wa-tooltip"
+            className={`absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`}
+          >
+            We're on WhatsApp
             <div className="absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
           </div>
           
