@@ -1,6 +1,5 @@
 import "./styles.css";
 import whatsappSvg from "./whatsapp.svg";
-import whatsappSvgBlack from "./whatsappblack.svg";
 import crossSvg from "./cross.svg";
 
 class WAChatBox {
@@ -172,7 +171,7 @@ class WAChatBox {
             <div>
               <a className="hover:no-underline" id="open-wa">
                 <div className="chat-btn">
-                  <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvgBlack.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
+                  <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvg.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
                   Start Chat
                 </div>
               </a>
