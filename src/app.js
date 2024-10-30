@@ -10,6 +10,9 @@ class WAChatBox {
   chat_name = null;
   button_text = null;
   showTooltip = true; // New state for tooltip visibility
+  tooltipText = "We're on WhatsApp"; // Default tooltip text
+  showTooltip = true; 
+  tooltipTimeout = 5000; // Default tooltip timeout in milliseconds
 
   formatTime(date) {
     let hours = date.getHours();
@@ -53,12 +56,16 @@ class WAChatBox {
     text = `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
     button_text = "Need Help?",
     chat_name = "Support",
+    tooltipText = "We're on WhatsApp", // New parameter for tooltip text
+    tooltipTimeout = 5000, // New parameter for tooltip timeout
   }) {
     this.link = link;
     this.user = user;
     this.text = text;
     this.button_text = button_text;
     this.chat_name = chat_name;
+    this.tooltipText = tooltipText; // Assigning the tooltip text
+    this.tooltipTimeout = tooltipTimeout;
     this.iframe = document.createElement("iframe");
     this.iframe.onload = this.iframeLoaded;
     this.iframe.src = "about:blank";
@@ -90,7 +97,7 @@ class WAChatBox {
           tooltip.classList.add("opacity-0");
         }
       }
-    }, 5000);
+    }, this.tooltipTimeout);
   }
 
   iframeLoaded = () => {
@@ -189,7 +196,7 @@ class WAChatBox {
             id="wa-tooltip"
             className={`absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`}
           >
-            We're on WhatsApp
+            {this.tooltipText} {/* Use the configurable tooltip text */}
             <div className="absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
           </div>
           
