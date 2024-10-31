@@ -1,222 +1,197 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  -webkit-font-smoothing: antialiased; /* Improve font rendering */
-  -moz-osx-font-smoothing: grayscale; /* Improve font rendering */
-  text-rendering: optimizeLegibility; /* Improve text rendering */
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-15px);
-  }
-  60% {
-    transform: translateY(-10px);
+/* Base styles with better performance */
+@layer base {
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    @apply antialiased;
   }
 }
 
-.bounce {
-  animation: bounce 1s ease infinite;
-}
+/* Optimize animations using transform instead of multiple properties */
+@layer components {
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-15px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .bounce {
+    animation: bounce 1s ease infinite;
+  }
 
-.chat-bg::before {
-  display: block;
-  position: absolute;
-  content: "";
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-  opacity: 0.08;
- }
+  /* Use CSS custom properties for commonly used values */
+  :root {
+    --chat-primary: rgb(15, 23, 42);
+    --chat-accent: rgb(37, 211, 102);
+    --chat-text: rgb(255, 255, 255);
+  }
 
-.chat-box {
-  padding: 7px 14px 6px;
-  background-color: rgb(15, 23, 42);
-  border-radius: 0px 8px 8px;
-  position: relative;
-  transition: all 0.3s ease 0s;
-  opacity: 1;
-  transform-origin: center top;
-  z-index: 2;
-  box-shadow: rgb(0 0 0 / 13%) 0px 1px 0.5px;
-  margin-top: 4px;
-  margin-left: -22px;
-  max-width: calc(100% - 66px);
-  visibility: hidden;
-  opacity: 0;
-  transition: margin-left 0.3s ease 0s, opacity 0.3s ease 0s, visibility 0.3s ease 0s;
-}
+  .chat-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.08;
+  }
 
-.chat-box.show {
-  visibility: visible;
-  opacity: 1;
-  margin-left: 0px;
-}
-
-.chat-box::before {
-  position: absolute;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  content: "";
-  top: 0px;
-  left: -12px;
-  width: 12px;
-  height: 19px;
-}
-
-.chat-time {
-  text-align: right;
-  margin-top: 4px;
-  font-size: 12px;
-  line-height: 16px;
-  color: rgba(37, 211, 102, 1.5);
-  margin-right: -8px;
-  margin-bottom: -4px;
-}
-
-.chat-name {
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 18px;
-  color:rgba(37, 211, 102, 1.5);
-}
-
-.chat-message {
-  font-size: 14px;
-  line-height: 19px;
-  margin-top: 4px;
-  color: rgba(255, 255, 255, 1.5);
-}
-
-.chat-btn {
-  padding: 8px 12px;
-  border-radius: 24px;
-  border: none;
-  background: rgb(0, 201, 98);
-  color: rgba(0, 0, 0, 1);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 20px;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  margin: 20px;
-  overflow: hidden;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.whatsapp-svg {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  fill: rgb(255, 255, 255);
-  z-index: 1;
-  margin-right: 7px;
-}
-
-.chat-whatsapp-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.replies-in {
-  font-size: 15px;
-  line-height: 18px;
-  margin-top: 4px;
-  color: rgba(255, 255, 255, 1.5);
-}
-
-.name-head {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
-  color: rgba(37, 211, 102, 1.5);
-}
-
-.need-btn {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-#wa-box.show {
-  animation: fadeInUp ease 0.5s;
-  -webkit-animation: fadeInUp ease 0.5s;
-  animation-fill-mode: forwards;
-  display: block !important;
-}
-
-#wa-box.hide {
-  animation: fadeOutDown ease 0.5s;
-  -webkit-animation: fadeOutDown ease 0.5s;
-  animation-fill-mode: forwards;
-  display: block !important;
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0);
+  .chat-box {
+    --padding: 7px 14px 6px;
+    padding: var(--padding);
+    background-color: var(--chat-primary);
+    border-radius: 0 8px 8px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 0.5px rgb(0 0 0 / 13%);
+    margin: 4px 0 0 -22px;
+    max-width: calc(100% - 66px);
     opacity: 0;
+    visibility: hidden;
+    transform-origin: center top;
+    transition: margin-left 0.3s ease,
+                opacity 0.3s ease,
+                visibility 0.3s ease;
   }
 
-  to {
-    transform: translate3d(0, 0, 0);
+  .chat-box.show {
+    visibility: visible;
     opacity: 1;
+    margin-left: 0;
+  }
+
+  .chat-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 12px;
+    height: 19px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  /* Optimize text styles */
+  .chat-time {
+    text-align: right;
+    margin: 4px -8px -4px 0;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--chat-accent);
+  }
+
+  .chat-name {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+    color: var(--chat-accent);
+  }
+
+  .chat-message {
+    font-size: 14px;
+    line-height: 19px;
+    margin-top: 4px;
+    color: var(--chat-text);
+  }
+
+  /* Optimize button styles */
+  .chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    margin: 20px;
+    border: none;
+    border-radius: 24px;
+    background: rgb(0, 201, 98);
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    appearance: none;
+  }
+
+  .whatsapp-svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    fill: var(--chat-text);
+    z-index: 1;
+    margin-right: 7px;
+  }
+
+  .chat-whatsapp-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+  }
+
+  .replies-in {
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 4px;
+    color: var(--chat-text);
+  }
+
+  .name-head {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: var(--chat-accent);
+  }
+
+  .need-btn {
+    user-select: none;
   }
 }
 
-@-webkit-keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0);
-    opacity: 0;
+/* Optimize animations */
+@layer utilities {
+  #wa-box.show {
+    animation: fadeInUp 0.5s ease forwards;
+    display: block !important;
   }
 
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+  #wa-box.hide {
+    animation: fadeOutDown 0.5s ease forwards;
+    display: block !important;
   }
 
-  to {
-    transform: translate3d(0, 40px, 0);
-    opacity: 0;
+  @keyframes fadeInUp {
+    from {
+      transform: translate3d(0, 40px, 0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
   }
-}
 
-@-webkit-keyframes fadeOutDown {
-  from {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-
-  to {
-    transform: translate3d(0, 40px, 0);
-    opacity: 0;
+  @keyframes fadeOutDown {
+    from {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    to {
+      transform: translate3d(0, 40px, 0);
+      opacity: 0;
+    }
   }
 }
