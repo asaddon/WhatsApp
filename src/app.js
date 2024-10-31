@@ -89,15 +89,14 @@ class WAChatBox {
 
     // Hide tooltip after 5 seconds
     setTimeout(() => {
-      this.showTooltip = false;
-      if (this.iframe.contentDocument) {
+    this.showTooltip = false;
+    if (this.iframe.contentDocument) {
         const tooltip = this.iframe.contentDocument.querySelector("#wa-tooltip");
         if (tooltip) {
-          tooltip.classList.remove("opacity-100");
-          tooltip.classList.add("opacity-0");
+            tooltip.remove(); // Completely remove the tooltip from the DOM
         }
-      }
-    }, this.tooltipTimeout);
+    }
+}, this.tooltipTimeout);
   }
 
   iframeLoaded = () => {
@@ -106,48 +105,60 @@ class WAChatBox {
     iframeDocument.body.append(chatBoxStyle);
 
     iframeDocument.addEventListener("click", (e) => {
-      this.handleClickOutside(e, iframeDocument);
+        this.handleClickOutside(e, iframeDocument);
     });
 
+    // Open link when clicking on the open-wa element
     iframeDocument.body.querySelector("#open-wa").onclick = (e) => {
-      e.stopPropagation();
-      this.link && window.open(this.link, "popup", "width=600,height=600");
+        e.stopPropagation();
+        this.link && window.open(this.link, "popup", "width=600,height=600");
     };
 
-    iframeDocument.querySelectorAll("#toggleWaBox").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        e.stopPropagation();
+    // Function to toggle the chat box
+    const toggleChatBox = () => {
         let action = "show";
         if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
-          action = "hide";
-        } else {
-          action = "show";
+            action = "hide";
         }
 
         if (action == "show") {
-          iframeDocument.querySelector("#wa-box").classList.remove("hide");
-          iframeDocument.querySelector("#wa-box").classList.add("show");
-          setTimeout(() => {
-            iframeDocument.querySelector(".chat-box").classList.add("show");
-          }, 200);
+            iframeDocument.querySelector("#wa-box").classList.remove("hide");
+            iframeDocument.querySelector("#wa-box").classList.add("show");
+            setTimeout(() => {
+                iframeDocument.querySelector(".chat-box").classList.add("show");
+            }, 200);
 
-          this.iframe.style.width = "408px";
-          this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
+            this.iframe.style.width = "408px";
+            this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
         } else {
-          iframeDocument.querySelector("#wa-box").classList.remove("show");
-          iframeDocument.querySelector("#wa-box").classList.add("hide");
-          setTimeout(() => {
-            this.iframe.style.width = "300px"; // Updated width
-            this.iframe.style.height = "200px";
-          }, 500);
+            iframeDocument.querySelector("#wa-box").classList.remove("show");
+            iframeDocument.querySelector("#wa-box").classList.add("hide");
+            setTimeout(() => {
+                this.iframe.style.width = "300px"; // Updated width
+                this.iframe.style.height = "200px";
+            }, 500);
         }
-      });
+    };
+
+    // Add click event listener for toggleWaBox elements
+    iframeDocument.querySelectorAll("#toggleWaBox").forEach((el) => {
+        el.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleChatBox();
+        });
     });
 
-    iframeDocument.querySelector("#wa-box").addEventListener("click", (e) => {
-      e.stopPropagation();
+    // Add click event listener for wa-tooltip element
+    iframeDocument.body.querySelector("#wa-tooltip").addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleChatBox();
     });
-  };
+
+    // Prevent click event from propagating when clicking on the wa-box
+    iframeDocument.querySelector("#wa-box").addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+};
 
   render = () => {
     return (

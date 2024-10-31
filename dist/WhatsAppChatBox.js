@@ -585,32 +585,37 @@ var WAChatBox = function () {
         e.stopPropagation();
         _this.link && window.open(_this.link, "popup", "width=600,height=600");
       };
+      var toggleChatBox = function toggleChatBox() {
+        var action = "show";
+        if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
+          action = "hide";
+        }
+        if (action == "show") {
+          iframeDocument.querySelector("#wa-box").classList.remove("hide");
+          iframeDocument.querySelector("#wa-box").classList.add("show");
+          setTimeout(function () {
+            iframeDocument.querySelector(".chat-box").classList.add("show");
+          }, 200);
+          _this.iframe.style.width = "408px";
+          _this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
+        } else {
+          iframeDocument.querySelector("#wa-box").classList.remove("show");
+          iframeDocument.querySelector("#wa-box").classList.add("hide");
+          setTimeout(function () {
+            _this.iframe.style.width = "300px";
+            _this.iframe.style.height = "200px";
+          }, 500);
+        }
+      };
       iframeDocument.querySelectorAll("#toggleWaBox").forEach(function (el) {
         el.addEventListener("click", function (e) {
           e.stopPropagation();
-          var action = "show";
-          if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
-            action = "hide";
-          } else {
-            action = "show";
-          }
-          if (action == "show") {
-            iframeDocument.querySelector("#wa-box").classList.remove("hide");
-            iframeDocument.querySelector("#wa-box").classList.add("show");
-            setTimeout(function () {
-              iframeDocument.querySelector(".chat-box").classList.add("show");
-            }, 200);
-            _this.iframe.style.width = "408px";
-            _this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
-          } else {
-            iframeDocument.querySelector("#wa-box").classList.remove("show");
-            iframeDocument.querySelector("#wa-box").classList.add("hide");
-            setTimeout(function () {
-              _this.iframe.style.width = "300px";
-              _this.iframe.style.height = "200px";
-            }, 500);
-          }
+          toggleChatBox();
         });
+      });
+      iframeDocument.body.querySelector("#wa-tooltip").addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleChatBox();
       });
       iframeDocument.querySelector("#wa-box").addEventListener("click", function (e) {
         e.stopPropagation();
@@ -740,8 +745,7 @@ var WAChatBox = function () {
       if (_this.iframe.contentDocument) {
         var tooltip = _this.iframe.contentDocument.querySelector("#wa-tooltip");
         if (tooltip) {
-          tooltip.classList.remove("opacity-100");
-          tooltip.classList.add("opacity-0");
+          tooltip.remove();
         }
       }
     }, this.tooltipTimeout);
