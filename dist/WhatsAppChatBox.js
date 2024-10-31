@@ -24,7 +24,7 @@
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*\n! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com\n*//*\n1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)\n2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)\n*/\n\n*,\n::before,\n::after {\n  box-sizing: border-box; /* 1 */\n  border-width: 0; /* 2 */\n  border-style: solid; /* 2 */\n  border-color: #e5e7eb; /* 2 */\n}\n\n::before,\n::after {\n  --tw-content: '';\n}\n\n/*\n1. Use a consistent sensible line-height in all browsers.\n2. Prevent adjustments of font size after orientation changes in iOS.\n3. Use a more readable tab size.\n4. Use the user's configured `sans` font-family by default.\n5. Use the user's configured `sans` font-feature-settings by default.\n*/\n\nhtml {\n  line-height: 1.5; /* 1 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n  -moz-tab-size: 4; /* 3 */\n  -o-tab-size: 4;\n     tab-size: 4; /* 3 */\n  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; /* 4 */\n  font-feature-settings: normal; /* 5 */\n}\n\n/*\n1. Remove the margin in all browsers.\n2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.\n*/\n\nbody {\n  margin: 0; /* 1 */\n  line-height: inherit; /* 2 */\n}\n\n/*\n1. Add the correct height in Firefox.\n2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)\n3. Ensure horizontal rules are visible by default.\n*/\n\nhr {\n  height: 0; /* 1 */\n  color: inherit; /* 2 */\n  border-top-width: 1px; /* 3 */\n}\n\n/*\nAdd the correct text decoration in Chrome, Edge, and Safari.\n*/\n\nabbr:where([title]) {\n  text-decoration: underline;\n  -webkit-text-decoration: underline dotted;\n          text-decoration: underline dotted;\n}\n\n/*\nRemove the default font size and weight for headings.\n*/\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: inherit;\n}\n\n/*\nReset links to optimize for opt-in styling instead of opt-out.\n*/\n\na {\n  color: inherit;\n  text-decoration: inherit;\n}\n\n/*\nAdd the correct font weight in Edge and Safari.\n*/\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/*\n1. Use the user's configured `mono` font family by default.\n2. Correct the odd `em` font sizing in all browsers.\n*/\n\ncode,\nkbd,\nsamp,\npre {\n  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/*\nAdd the correct font size in all browsers.\n*/\n\nsmall {\n  font-size: 80%;\n}\n\n/*\nPrevent `sub` and `sup` elements from affecting the line height in all browsers.\n*/\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/*\n1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)\n2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)\n3. Remove gaps between table borders by default.\n*/\n\ntable {\n  text-indent: 0; /* 1 */\n  border-color: inherit; /* 2 */\n  border-collapse: collapse; /* 3 */\n}\n\n/*\n1. Change the font styles in all browsers.\n2. Remove the margin in Firefox and Safari.\n3. Remove default padding in all browsers.\n*/\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit; /* 1 */\n  font-size: 100%; /* 1 */\n  font-weight: inherit; /* 1 */\n  line-height: inherit; /* 1 */\n  color: inherit; /* 1 */\n  margin: 0; /* 2 */\n  padding: 0; /* 3 */\n}\n\n/*\nRemove the inheritance of text transform in Edge and Firefox.\n*/\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n/*\n1. Correct the inability to style clickable types in iOS and Safari.\n2. Remove default button styles.\n*/\n\nbutton,\n[type='button'],\n[type='reset'],\n[type='submit'] {\n  -webkit-appearance: button; /* 1 */\n  background-color: transparent; /* 2 */\n  background-image: none; /* 2 */\n}\n\n/*\nUse the modern Firefox focus style for all focusable elements.\n*/\n\n:-moz-focusring {\n  outline: auto;\n}\n\n/*\nRemove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)\n*/\n\n:-moz-ui-invalid {\n  box-shadow: none;\n}\n\n/*\nAdd the correct vertical alignment in Chrome and Firefox.\n*/\n\nprogress {\n  vertical-align: baseline;\n}\n\n/*\nCorrect the cursor style of increment and decrement buttons in Safari.\n*/\n\n::-webkit-inner-spin-button,\n::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/*\n1. Correct the odd appearance in Chrome and Safari.\n2. Correct the outline style in Safari.\n*/\n\n[type='search'] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/*\nRemove the inner padding in Chrome and Safari on macOS.\n*/\n\n::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/*\n1. Correct the inability to style clickable types in iOS and Safari.\n2. Change font properties to `inherit` in Safari.\n*/\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/*\nAdd the correct display in Chrome and Safari.\n*/\n\nsummary {\n  display: list-item;\n}\n\n/*\nRemoves the default spacing and border for appropriate elements.\n*/\n\nblockquote,\ndl,\ndd,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\nhr,\nfigure,\np,\npre {\n  margin: 0;\n}\n\nfieldset {\n  margin: 0;\n  padding: 0;\n}\n\nlegend {\n  padding: 0;\n}\n\nol,\nul,\nmenu {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/*\nPrevent resizing textareas horizontally by default.\n*/\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)\n2. Set the default placeholder color to the user's configured gray 400 color.\n*/\n\ninput::-moz-placeholder, textarea::-moz-placeholder {\n  opacity: 1; /* 1 */\n  color: #9ca3af; /* 2 */\n}\n\ninput::placeholder,\ntextarea::placeholder {\n  opacity: 1; /* 1 */\n  color: #9ca3af; /* 2 */\n}\n\n/*\nSet the default cursor for buttons.\n*/\n\nbutton,\n[role=\"button\"] {\n  cursor: pointer;\n}\n\n/*\nMake sure disabled buttons don't get the pointer cursor.\n*/\n:disabled {\n  cursor: default;\n}\n\n/*\n1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)\n2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)\n   This can trigger a poorly considered lint error in some tools but is included by design.\n*/\n\nimg,\nsvg,\nvideo,\ncanvas,\naudio,\niframe,\nembed,\nobject {\n  display: block; /* 1 */\n  vertical-align: middle; /* 2 */\n}\n\n/*\nConstrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)\n*/\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n}\n\n/* Make elements with the HTML hidden attribute stay hidden by default */\n[hidden] {\n  display: none;\n}\n  body {\n    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, \"Segoe UI\", Roboto, Ubuntu, Cantarell, \"Noto Sans\", sans-serif;\n    text-rendering: optimizeLegibility;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n*, ::before, ::after {\n  --tw-border-spacing-x: 0;\n  --tw-border-spacing-y: 0;\n  --tw-translate-x: 0;\n  --tw-translate-y: 0;\n  --tw-rotate: 0;\n  --tw-skew-x: 0;\n  --tw-skew-y: 0;\n  --tw-scale-x: 1;\n  --tw-scale-y: 1;\n  --tw-pan-x:  ;\n  --tw-pan-y:  ;\n  --tw-pinch-zoom:  ;\n  --tw-scroll-snap-strictness: proximity;\n  --tw-ordinal:  ;\n  --tw-slashed-zero:  ;\n  --tw-numeric-figure:  ;\n  --tw-numeric-spacing:  ;\n  --tw-numeric-fraction:  ;\n  --tw-ring-inset:  ;\n  --tw-ring-offset-width: 0px;\n  --tw-ring-offset-color: #fff;\n  --tw-ring-color: rgba(59, 130, 246, 0.5);\n  --tw-ring-offset-shadow: 0 0 rgba(0,0,0,0);\n  --tw-ring-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow-colored: 0 0 rgba(0,0,0,0);\n  --tw-blur:  ;\n  --tw-brightness:  ;\n  --tw-contrast:  ;\n  --tw-grayscale:  ;\n  --tw-hue-rotate:  ;\n  --tw-invert:  ;\n  --tw-saturate:  ;\n  --tw-sepia:  ;\n  --tw-drop-shadow:  ;\n  --tw-backdrop-blur:  ;\n  --tw-backdrop-brightness:  ;\n  --tw-backdrop-contrast:  ;\n  --tw-backdrop-grayscale:  ;\n  --tw-backdrop-hue-rotate:  ;\n  --tw-backdrop-invert:  ;\n  --tw-backdrop-opacity:  ;\n  --tw-backdrop-saturate:  ;\n  --tw-backdrop-sepia:  ;\n}\n\n::backdrop {\n  --tw-border-spacing-x: 0;\n  --tw-border-spacing-y: 0;\n  --tw-translate-x: 0;\n  --tw-translate-y: 0;\n  --tw-rotate: 0;\n  --tw-skew-x: 0;\n  --tw-skew-y: 0;\n  --tw-scale-x: 1;\n  --tw-scale-y: 1;\n  --tw-pan-x:  ;\n  --tw-pan-y:  ;\n  --tw-pinch-zoom:  ;\n  --tw-scroll-snap-strictness: proximity;\n  --tw-ordinal:  ;\n  --tw-slashed-zero:  ;\n  --tw-numeric-figure:  ;\n  --tw-numeric-spacing:  ;\n  --tw-numeric-fraction:  ;\n  --tw-ring-inset:  ;\n  --tw-ring-offset-width: 0px;\n  --tw-ring-offset-color: #fff;\n  --tw-ring-color: rgba(59, 130, 246, 0.5);\n  --tw-ring-offset-shadow: 0 0 rgba(0,0,0,0);\n  --tw-ring-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow-colored: 0 0 rgba(0,0,0,0);\n  --tw-blur:  ;\n  --tw-brightness:  ;\n  --tw-contrast:  ;\n  --tw-grayscale:  ;\n  --tw-hue-rotate:  ;\n  --tw-invert:  ;\n  --tw-saturate:  ;\n  --tw-sepia:  ;\n  --tw-drop-shadow:  ;\n  --tw-backdrop-blur:  ;\n  --tw-backdrop-brightness:  ;\n  --tw-backdrop-contrast:  ;\n  --tw-backdrop-grayscale:  ;\n  --tw-backdrop-hue-rotate:  ;\n  --tw-backdrop-invert:  ;\n  --tw-backdrop-opacity:  ;\n  --tw-backdrop-saturate:  ;\n  --tw-backdrop-sepia:  ;\n}\n@keyframes bounce {\n    0%, 20%, 50%, 80%, 100% {\n      transform: translateY(0);\n    }\n    40% {\n      transform: translateY(-15px);\n    }\n    60% {\n      transform: translateY(-10px);\n    }\n  }\n.bounce {\n    animation: bounce 1s ease infinite;\n  }\n/* Use CSS custom properties for commonly used values */\n:root {\n    --chat-primary: rgb(15, 23, 42);\n    --chat-accent: rgb(37, 211, 102);\n    --chat-text: rgb(255, 255, 255);\n  }\n.chat-bg::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    opacity: 0.08;\n  }\n.chat-box {\n    --padding: 7px 14px 6px;\n    padding: 7px 14px 6px;\n    padding: var(--padding);\n    background-color: rgb(15, 23, 42);\n    background-color: var(--chat-primary);\n    border-radius: 0 8px 8px;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);\n    margin: 4px 0 0 -22px;\n    max-width: calc(100% - 66px);\n    opacity: 0;\n    visibility: hidden;\n    transform-origin: center top;\n    transition: margin-left 0.3s ease,\n                opacity 0.3s ease,\n                visibility 0.3s ease;\n  }\n.chat-box.show {\n    visibility: visible;\n    opacity: 1;\n    margin-left: 0;\n  }\n.chat-box::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: -12px;\n    width: 12px;\n    height: 19px;\n    background-position: 50% 50%;\n    background-repeat: no-repeat;\n    background-size: contain;\n  }\n/* Optimize text styles */\n.chat-time {\n    text-align: right;\n    margin: 4px -8px -4px 0;\n    font-size: 12px;\n    line-height: 16px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.chat-name {\n    font-size: 13px;\n    font-weight: 700;\n    line-height: 18px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.chat-message {\n    font-size: 14px;\n    line-height: 19px;\n    margin-top: 4px;\n    color: rgb(255, 255, 255);\n    color: var(--chat-text);\n  }\n/* Optimize button styles */\n.chat-btn {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 8px 12px;\n    margin: 20px;\n    border: none;\n    border-radius: 24px;\n    background: rgb(0, 201, 98);\n    color: rgb(0, 0, 0);\n    font-size: 15px;\n    font-weight: 700;\n    line-height: 20px;\n    cursor: pointer;\n    position: relative;\n    overflow: hidden;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n  }\n.chat-whatsapp-icon {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 48px;\n    height: 48px;\n  }\n.replies-in {\n    font-size: 15px;\n    line-height: 18px;\n    margin-top: 4px;\n    color: rgb(255, 255, 255);\n    color: var(--chat-text);\n  }\n.name-head {\n    font-size: 16px;\n    font-weight: 700;\n    line-height: 20px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.need-btn {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n.fixed {\n  position: fixed;\n}\n.absolute {\n  position: absolute;\n}\n.relative {\n  position: relative;\n}\n.bottom-1 {\n  bottom: 0.25rem;\n}\n.right-0 {\n  right: 0px;\n}\n.right-1 {\n  right: 0.25rem;\n}\n.right-2 {\n  right: 0.5rem;\n}\n.right-\\[-6px\\] {\n  right: -6px;\n}\n.right-full {\n  right: 100%;\n}\n.top-1 {\n  top: 0.25rem;\n}\n.top-1\\/2 {\n  top: 50%;\n}\n.top-2 {\n  top: 0.5rem;\n}\n.float-right {\n  float: right;\n}\n.mx-4 {\n  margin-left: 1rem;\n  margin-right: 1rem;\n}\n.my-4 {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.ml-2 {\n  margin-left: 0.5rem;\n}\n.mr-2 {\n  margin-right: 0.5rem;\n}\n.flex {\n  display: flex;\n}\n.h-0 {\n  height: 0px;\n}\n.h-16 {\n  height: 4rem;\n}\n.h-2 {\n  height: 0.5rem;\n}\n.h-2\\.5 {\n  height: 0.625rem;\n}\n.h-3 {\n  height: 0.75rem;\n}\n.h-4 {\n  height: 1rem;\n}\n.h-5 {\n  height: 1.25rem;\n}\n.w-0 {\n  width: 0px;\n}\n.w-2 {\n  width: 0.5rem;\n}\n.w-2\\.5 {\n  width: 0.625rem;\n}\n.w-3 {\n  width: 0.75rem;\n}\n.w-4 {\n  width: 1rem;\n}\n.w-5 {\n  width: 1.25rem;\n}\n.max-w-sm {\n  max-width: 24rem;\n}\n.-translate-y-1\\/2 {\n  --tw-translate-y: -50%;\n  transform: translate(var(--tw-translate-x), -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.transform {\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-col {\n  flex-direction: column;\n}\n.items-center {\n  align-items: center;\n}\n.justify-center {\n  justify-content: center;\n}\n.overflow-hidden {\n  overflow: hidden;\n}\n.whitespace-nowrap {\n  white-space: nowrap;\n}\n.rounded-full {\n  border-radius: 9999px;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.border {\n  border-width: 1px;\n}\n.border-2 {\n  border-width: 2px;\n}\n.border-y-\\[6px\\] {\n  border-top-width: 6px;\n  border-bottom-width: 6px;\n}\n.border-l-\\[6px\\] {\n  border-left-width: 6px;\n}\n.border-white {\n  --tw-border-opacity: 1;\n  border-color: rgba(255, 255, 255, 1);\n  border-color: rgb(255 255 255 / var(--tw-border-opacity));\n}\n.border-y-transparent {\n  border-top-color: transparent;\n  border-bottom-color: transparent;\n}\n.border-l-black {\n  --tw-border-opacity: 1;\n  border-left-color: rgba(0, 0, 0, 1);\n  border-left-color: rgb(0 0 0 / var(--tw-border-opacity));\n}\n.bg-\\[\\#ff0000\\] {\n  --tw-bg-opacity: 1;\n  background-color: rgba(255, 0, 0, 1);\n  background-color: rgb(255 0 0 / var(--tw-bg-opacity));\n}\n.bg-black {\n  --tw-bg-opacity: 1;\n  background-color: rgba(0, 0, 0, 1);\n  background-color: rgb(0 0 0 / var(--tw-bg-opacity));\n}\n.bg-green-500 {\n  --tw-bg-opacity: 1;\n  background-color: rgba(34, 197, 94, 1);\n  background-color: rgb(34 197 94 / var(--tw-bg-opacity));\n}\n.bg-slate-900 {\n  --tw-bg-opacity: 1;\n  background-color: rgba(15, 23, 42, 1);\n  background-color: rgb(15 23 42 / var(--tw-bg-opacity));\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.p-3 {\n  padding: 0.75rem;\n}\n.p-7 {\n  padding: 1.75rem;\n}\n.p-8 {\n  padding: 2rem;\n}\n.px-4 {\n  padding-left: 1rem;\n  padding-right: 1rem;\n}\n.py-1 {\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.py-4 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n.text-sm {\n  font-size: 0.875rem;\n  line-height: 1.25rem;\n}\n.font-bold {\n  font-weight: 700;\n}\n.font-semibold {\n  font-weight: 600;\n}\n.text-white {\n  --tw-text-opacity: 1;\n  color: rgba(255, 255, 255, 1);\n  color: rgb(255 255 255 / var(--tw-text-opacity));\n}\n.opacity-0 {\n  opacity: 0;\n}\n.opacity-100 {\n  opacity: 1;\n}\n.shadow-lg {\n  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);\n  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);\n  box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);\n  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);\n}\n.transition-opacity {\n  transition-property: opacity;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.duration-200 {\n  transition-duration: 200ms;\n}\n#wa-box.show {\n    display: block !important;\n  }\n#wa-box.show {\n    animation: fadeInUp 0.5s ease forwards;\n  }\n#wa-box.hide {\n    display: block !important;\n  }\n#wa-box.hide {\n    animation: fadeOutDown 0.5s ease forwards;\n  }\n@keyframes fadeInUp {\n    from {\n      transform: translate3d(0, 40px, 0);\n      opacity: 0;\n    }\n    to {\n      transform: translate3d(0, 0, 0);\n      opacity: 1;\n    }\n  }\n@keyframes fadeOutDown {\n    from {\n      transform: translate3d(0, 0, 0);\n      opacity: 1;\n    }\n    to {\n      transform: translate3d(0, 40px, 0);\n      opacity: 0;\n    }\n  }\n\n/* Base styles with better performance */\n\n/* Optimize animations using transform instead of multiple properties */\n\n/* Optimize animations */\n\n.hover\\:no-underline:hover {\n  text-decoration-line: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*\n! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com\n*//*\n1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)\n2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)\n*/\n\n*,\n::before,\n::after {\n  box-sizing: border-box; /* 1 */\n  border-width: 0; /* 2 */\n  border-style: solid; /* 2 */\n  border-color: #e5e7eb; /* 2 */\n}\n\n::before,\n::after {\n  --tw-content: '';\n}\n\n/*\n1. Use a consistent sensible line-height in all browsers.\n2. Prevent adjustments of font size after orientation changes in iOS.\n3. Use a more readable tab size.\n4. Use the user's configured `sans` font-family by default.\n5. Use the user's configured `sans` font-feature-settings by default.\n*/\n\nhtml {\n  line-height: 1.5; /* 1 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n  -moz-tab-size: 4; /* 3 */\n  -o-tab-size: 4;\n     tab-size: 4; /* 3 */\n  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; /* 4 */\n  font-feature-settings: normal; /* 5 */\n}\n\n/*\n1. Remove the margin in all browsers.\n2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.\n*/\n\nbody {\n  margin: 0; /* 1 */\n  line-height: inherit; /* 2 */\n}\n\n/*\n1. Add the correct height in Firefox.\n2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)\n3. Ensure horizontal rules are visible by default.\n*/\n\nhr {\n  height: 0; /* 1 */\n  color: inherit; /* 2 */\n  border-top-width: 1px; /* 3 */\n}\n\n/*\nAdd the correct text decoration in Chrome, Edge, and Safari.\n*/\n\nabbr:where([title]) {\n  text-decoration: underline;\n  -webkit-text-decoration: underline dotted;\n          text-decoration: underline dotted;\n}\n\n/*\nRemove the default font size and weight for headings.\n*/\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: inherit;\n}\n\n/*\nReset links to optimize for opt-in styling instead of opt-out.\n*/\n\na {\n  color: inherit;\n  text-decoration: inherit;\n}\n\n/*\nAdd the correct font weight in Edge and Safari.\n*/\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/*\n1. Use the user's configured `mono` font family by default.\n2. Correct the odd `em` font sizing in all browsers.\n*/\n\ncode,\nkbd,\nsamp,\npre {\n  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/*\nAdd the correct font size in all browsers.\n*/\n\nsmall {\n  font-size: 80%;\n}\n\n/*\nPrevent `sub` and `sup` elements from affecting the line height in all browsers.\n*/\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/*\n1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)\n2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)\n3. Remove gaps between table borders by default.\n*/\n\ntable {\n  text-indent: 0; /* 1 */\n  border-color: inherit; /* 2 */\n  border-collapse: collapse; /* 3 */\n}\n\n/*\n1. Change the font styles in all browsers.\n2. Remove the margin in Firefox and Safari.\n3. Remove default padding in all browsers.\n*/\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit; /* 1 */\n  font-size: 100%; /* 1 */\n  font-weight: inherit; /* 1 */\n  line-height: inherit; /* 1 */\n  color: inherit; /* 1 */\n  margin: 0; /* 2 */\n  padding: 0; /* 3 */\n}\n\n/*\nRemove the inheritance of text transform in Edge and Firefox.\n*/\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n/*\n1. Correct the inability to style clickable types in iOS and Safari.\n2. Remove default button styles.\n*/\n\nbutton,\n[type='button'],\n[type='reset'],\n[type='submit'] {\n  -webkit-appearance: button; /* 1 */\n  background-color: transparent; /* 2 */\n  background-image: none; /* 2 */\n}\n\n/*\nUse the modern Firefox focus style for all focusable elements.\n*/\n\n:-moz-focusring {\n  outline: auto;\n}\n\n/*\nRemove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)\n*/\n\n:-moz-ui-invalid {\n  box-shadow: none;\n}\n\n/*\nAdd the correct vertical alignment in Chrome and Firefox.\n*/\n\nprogress {\n  vertical-align: baseline;\n}\n\n/*\nCorrect the cursor style of increment and decrement buttons in Safari.\n*/\n\n::-webkit-inner-spin-button,\n::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/*\n1. Correct the odd appearance in Chrome and Safari.\n2. Correct the outline style in Safari.\n*/\n\n[type='search'] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/*\nRemove the inner padding in Chrome and Safari on macOS.\n*/\n\n::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/*\n1. Correct the inability to style clickable types in iOS and Safari.\n2. Change font properties to `inherit` in Safari.\n*/\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/*\nAdd the correct display in Chrome and Safari.\n*/\n\nsummary {\n  display: list-item;\n}\n\n/*\nRemoves the default spacing and border for appropriate elements.\n*/\n\nblockquote,\ndl,\ndd,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\nhr,\nfigure,\np,\npre {\n  margin: 0;\n}\n\nfieldset {\n  margin: 0;\n  padding: 0;\n}\n\nlegend {\n  padding: 0;\n}\n\nol,\nul,\nmenu {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n\n/*\nPrevent resizing textareas horizontally by default.\n*/\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)\n2. Set the default placeholder color to the user's configured gray 400 color.\n*/\n\ninput::-moz-placeholder, textarea::-moz-placeholder {\n  opacity: 1; /* 1 */\n  color: #9ca3af; /* 2 */\n}\n\ninput::placeholder,\ntextarea::placeholder {\n  opacity: 1; /* 1 */\n  color: #9ca3af; /* 2 */\n}\n\n/*\nSet the default cursor for buttons.\n*/\n\nbutton,\n[role=\"button\"] {\n  cursor: pointer;\n}\n\n/*\nMake sure disabled buttons don't get the pointer cursor.\n*/\n:disabled {\n  cursor: default;\n}\n\n/*\n1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)\n2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)\n   This can trigger a poorly considered lint error in some tools but is included by design.\n*/\n\nimg,\nsvg,\nvideo,\ncanvas,\naudio,\niframe,\nembed,\nobject {\n  display: block; /* 1 */\n  vertical-align: middle; /* 2 */\n}\n\n/*\nConstrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)\n*/\n\nimg,\nvideo {\n  max-width: 100%;\n  height: auto;\n}\n\n/* Make elements with the HTML hidden attribute stay hidden by default */\n[hidden] {\n  display: none;\n}\n  body {\n    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, \"Segoe UI\", Roboto, Ubuntu, Cantarell, \"Noto Sans\", sans-serif;\n    text-rendering: optimizeLegibility;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n*, ::before, ::after {\n  --tw-border-spacing-x: 0;\n  --tw-border-spacing-y: 0;\n  --tw-translate-x: 0;\n  --tw-translate-y: 0;\n  --tw-rotate: 0;\n  --tw-skew-x: 0;\n  --tw-skew-y: 0;\n  --tw-scale-x: 1;\n  --tw-scale-y: 1;\n  --tw-pan-x:  ;\n  --tw-pan-y:  ;\n  --tw-pinch-zoom:  ;\n  --tw-scroll-snap-strictness: proximity;\n  --tw-ordinal:  ;\n  --tw-slashed-zero:  ;\n  --tw-numeric-figure:  ;\n  --tw-numeric-spacing:  ;\n  --tw-numeric-fraction:  ;\n  --tw-ring-inset:  ;\n  --tw-ring-offset-width: 0px;\n  --tw-ring-offset-color: #fff;\n  --tw-ring-color: rgba(59, 130, 246, 0.5);\n  --tw-ring-offset-shadow: 0 0 rgba(0,0,0,0);\n  --tw-ring-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow-colored: 0 0 rgba(0,0,0,0);\n  --tw-blur:  ;\n  --tw-brightness:  ;\n  --tw-contrast:  ;\n  --tw-grayscale:  ;\n  --tw-hue-rotate:  ;\n  --tw-invert:  ;\n  --tw-saturate:  ;\n  --tw-sepia:  ;\n  --tw-drop-shadow:  ;\n  --tw-backdrop-blur:  ;\n  --tw-backdrop-brightness:  ;\n  --tw-backdrop-contrast:  ;\n  --tw-backdrop-grayscale:  ;\n  --tw-backdrop-hue-rotate:  ;\n  --tw-backdrop-invert:  ;\n  --tw-backdrop-opacity:  ;\n  --tw-backdrop-saturate:  ;\n  --tw-backdrop-sepia:  ;\n}\n\n::backdrop {\n  --tw-border-spacing-x: 0;\n  --tw-border-spacing-y: 0;\n  --tw-translate-x: 0;\n  --tw-translate-y: 0;\n  --tw-rotate: 0;\n  --tw-skew-x: 0;\n  --tw-skew-y: 0;\n  --tw-scale-x: 1;\n  --tw-scale-y: 1;\n  --tw-pan-x:  ;\n  --tw-pan-y:  ;\n  --tw-pinch-zoom:  ;\n  --tw-scroll-snap-strictness: proximity;\n  --tw-ordinal:  ;\n  --tw-slashed-zero:  ;\n  --tw-numeric-figure:  ;\n  --tw-numeric-spacing:  ;\n  --tw-numeric-fraction:  ;\n  --tw-ring-inset:  ;\n  --tw-ring-offset-width: 0px;\n  --tw-ring-offset-color: #fff;\n  --tw-ring-color: rgba(59, 130, 246, 0.5);\n  --tw-ring-offset-shadow: 0 0 rgba(0,0,0,0);\n  --tw-ring-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow: 0 0 rgba(0,0,0,0);\n  --tw-shadow-colored: 0 0 rgba(0,0,0,0);\n  --tw-blur:  ;\n  --tw-brightness:  ;\n  --tw-contrast:  ;\n  --tw-grayscale:  ;\n  --tw-hue-rotate:  ;\n  --tw-invert:  ;\n  --tw-saturate:  ;\n  --tw-sepia:  ;\n  --tw-drop-shadow:  ;\n  --tw-backdrop-blur:  ;\n  --tw-backdrop-brightness:  ;\n  --tw-backdrop-contrast:  ;\n  --tw-backdrop-grayscale:  ;\n  --tw-backdrop-hue-rotate:  ;\n  --tw-backdrop-invert:  ;\n  --tw-backdrop-opacity:  ;\n  --tw-backdrop-saturate:  ;\n  --tw-backdrop-sepia:  ;\n}\n@keyframes bounce {\n    0%, 20%, 50%, 80%, 100% {\n      transform: translateY(0);\n    }\n    40% {\n      transform: translateY(-15px);\n    }\n    60% {\n      transform: translateY(-10px);\n    }\n  }\n.bounce {\n    animation: bounce 1s ease infinite;\n  }\n/* Use CSS custom properties for commonly used values */\n:root {\n    --chat-primary: rgb(15, 23, 42);\n    --chat-accent: rgb(37, 211, 102);\n    --chat-text: rgb(255, 255, 255);\n  }\n.chat-bg::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    opacity: 0.08;\n  }\n.chat-box {\n    --padding: 7px 14px 6px;\n    padding: 7px 14px 6px;\n    padding: var(--padding);\n    background-color: rgb(15, 23, 42);\n    background-color: var(--chat-primary);\n    border-radius: 0 8px 8px;\n    position: relative;\n    z-index: 2;\n    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);\n    margin: 4px 0 0 -22px;\n    max-width: calc(100% - 66px);\n    opacity: 0;\n    visibility: hidden;\n    transform-origin: center top;\n    transition: margin-left 0.3s ease,\n                opacity 0.3s ease,\n                visibility 0.3s ease;\n  }\n.chat-box.show {\n    visibility: visible;\n    opacity: 1;\n    margin-left: 0;\n  }\n.chat-box::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: -12px;\n    width: 12px;\n    height: 19px;\n    background-position: 50% 50%;\n    background-repeat: no-repeat;\n    background-size: contain;\n  }\n/* Optimize text styles */\n.chat-time {\n    text-align: right;\n    margin: 4px -8px -4px 0;\n    font-size: 12px;\n    line-height: 16px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.chat-name {\n    font-size: 13px;\n    font-weight: 700;\n    line-height: 18px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.chat-message {\n    font-size: 14px;\n    line-height: 19px;\n    margin-top: 4px;\n    color: rgb(255, 255, 255);\n    color: var(--chat-text);\n  }\n/* Optimize button styles */\n.chat-btn {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 8px 12px;\n    margin: 20px;\n    border: none;\n    border-radius: 24px;\n    background: rgb(0, 201, 98);\n    color: rgb(0, 0, 0);\n    font-size: 15px;\n    font-weight: 700;\n    line-height: 20px;\n    cursor: pointer;\n    position: relative;\n    overflow: hidden;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n  }\n.chat-whatsapp-icon {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 48px;\n    height: 48px;\n  }\n.replies-in {\n    font-size: 15px;\n    line-height: 18px;\n    margin-top: 4px;\n    color: rgb(255, 255, 255);\n    color: var(--chat-text);\n  }\n.name-head {\n    font-size: 16px;\n    font-weight: 700;\n    line-height: 20px;\n    color: rgb(37, 211, 102);\n    color: var(--chat-accent);\n  }\n.need-btn {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n.static {\n  position: static;\n}\n.fixed {\n  position: fixed;\n}\n.absolute {\n  position: absolute;\n}\n.relative {\n  position: relative;\n}\n.bottom-1 {\n  bottom: 0.25rem;\n}\n.right-0 {\n  right: 0px;\n}\n.right-1 {\n  right: 0.25rem;\n}\n.right-2 {\n  right: 0.5rem;\n}\n.right-\\[-6px\\] {\n  right: -6px;\n}\n.right-full {\n  right: 100%;\n}\n.top-1 {\n  top: 0.25rem;\n}\n.top-1\\/2 {\n  top: 50%;\n}\n.top-2 {\n  top: 0.5rem;\n}\n.float-right {\n  float: right;\n}\n.mx-4 {\n  margin-left: 1rem;\n  margin-right: 1rem;\n}\n.my-4 {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.ml-2 {\n  margin-left: 0.5rem;\n}\n.mr-2 {\n  margin-right: 0.5rem;\n}\n.flex {\n  display: flex;\n}\n.h-0 {\n  height: 0px;\n}\n.h-16 {\n  height: 4rem;\n}\n.h-2 {\n  height: 0.5rem;\n}\n.h-2\\.5 {\n  height: 0.625rem;\n}\n.h-3 {\n  height: 0.75rem;\n}\n.h-4 {\n  height: 1rem;\n}\n.h-5 {\n  height: 1.25rem;\n}\n.w-0 {\n  width: 0px;\n}\n.w-2 {\n  width: 0.5rem;\n}\n.w-2\\.5 {\n  width: 0.625rem;\n}\n.w-3 {\n  width: 0.75rem;\n}\n.w-4 {\n  width: 1rem;\n}\n.w-5 {\n  width: 1.25rem;\n}\n.max-w-sm {\n  max-width: 24rem;\n}\n.-translate-y-1\\/2 {\n  --tw-translate-y: -50%;\n  transform: translate(var(--tw-translate-x), -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.transform {\n  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));\n}\n.cursor-pointer {\n  cursor: pointer;\n}\n.flex-col {\n  flex-direction: column;\n}\n.items-center {\n  align-items: center;\n}\n.justify-center {\n  justify-content: center;\n}\n.overflow-hidden {\n  overflow: hidden;\n}\n.whitespace-nowrap {\n  white-space: nowrap;\n}\n.rounded-full {\n  border-radius: 9999px;\n}\n.rounded-lg {\n  border-radius: 0.5rem;\n}\n.border {\n  border-width: 1px;\n}\n.border-2 {\n  border-width: 2px;\n}\n.border-y-\\[6px\\] {\n  border-top-width: 6px;\n  border-bottom-width: 6px;\n}\n.border-l-\\[6px\\] {\n  border-left-width: 6px;\n}\n.border-white {\n  --tw-border-opacity: 1;\n  border-color: rgba(255, 255, 255, 1);\n  border-color: rgb(255 255 255 / var(--tw-border-opacity));\n}\n.border-y-transparent {\n  border-top-color: transparent;\n  border-bottom-color: transparent;\n}\n.border-l-black {\n  --tw-border-opacity: 1;\n  border-left-color: rgba(0, 0, 0, 1);\n  border-left-color: rgb(0 0 0 / var(--tw-border-opacity));\n}\n.bg-\\[\\#ff0000\\] {\n  --tw-bg-opacity: 1;\n  background-color: rgba(255, 0, 0, 1);\n  background-color: rgb(255 0 0 / var(--tw-bg-opacity));\n}\n.bg-black {\n  --tw-bg-opacity: 1;\n  background-color: rgba(0, 0, 0, 1);\n  background-color: rgb(0 0 0 / var(--tw-bg-opacity));\n}\n.bg-green-500 {\n  --tw-bg-opacity: 1;\n  background-color: rgba(34, 197, 94, 1);\n  background-color: rgb(34 197 94 / var(--tw-bg-opacity));\n}\n.bg-slate-900 {\n  --tw-bg-opacity: 1;\n  background-color: rgba(15, 23, 42, 1);\n  background-color: rgb(15 23 42 / var(--tw-bg-opacity));\n}\n.p-1 {\n  padding: 0.25rem;\n}\n.p-3 {\n  padding: 0.75rem;\n}\n.p-7 {\n  padding: 1.75rem;\n}\n.p-8 {\n  padding: 2rem;\n}\n.px-4 {\n  padding-left: 1rem;\n  padding-right: 1rem;\n}\n.py-1 {\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n}\n.py-4 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n.text-sm {\n  font-size: 0.875rem;\n  line-height: 1.25rem;\n}\n.font-bold {\n  font-weight: 700;\n}\n.font-semibold {\n  font-weight: 600;\n}\n.text-white {\n  --tw-text-opacity: 1;\n  color: rgba(255, 255, 255, 1);\n  color: rgb(255 255 255 / var(--tw-text-opacity));\n}\n.opacity-0 {\n  opacity: 0;\n}\n.opacity-100 {\n  opacity: 1;\n}\n.shadow-lg {\n  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);\n  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);\n  box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);\n  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);\n}\n.transition-opacity {\n  transition-property: opacity;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.duration-200 {\n  transition-duration: 200ms;\n}\n#wa-box.show {\n    display: block !important;\n  }\n#wa-box.show {\n    animation: fadeInUp 0.5s ease forwards;\n  }\n#wa-box.hide {\n    display: block !important;\n  }\n#wa-box.hide {\n    animation: fadeOutDown 0.5s ease forwards;\n  }\n@keyframes fadeInUp {\n    from {\n      transform: translate3d(0, 40px, 0);\n      opacity: 0;\n    }\n    to {\n      transform: translate3d(0, 0, 0);\n      opacity: 1;\n    }\n  }\n@keyframes fadeOutDown {\n    from {\n      transform: translate3d(0, 0, 0);\n      opacity: 1;\n    }\n    to {\n      transform: translate3d(0, 40px, 0);\n      opacity: 0;\n    }\n  }\n\n/* Base styles with better performance */\n\n/* Optimize animations using transform instead of multiple properties */\n\n/* Optimize animations */\n\n.hover\\:no-underline:hover {\n  text-decoration-line: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -518,6 +518,8 @@ var cross = __webpack_require__(819);
 var cross_default = /*#__PURE__*/__webpack_require__.n(cross);
 ;// CONCATENATED MODULE: ./src/app.js
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -528,100 +530,59 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 var WAChatBox = function () {
-  function WAChatBox(_ref) {
+  function WAChatBox(config) {
     var _this = this;
-    var _ref$link = _ref.link,
-      link = _ref$link === void 0 ? "https://wa.me/919999999999" : _ref$link,
-      _ref$user = _ref.user,
-      user = _ref$user === void 0 ? {
-        name: "Alice",
-        avatar: "https://randomuser.me/api/portraits/women/66.jpg",
-        status: "Typically replies within an hour"
-      } : _ref$user,
-      _ref$text = _ref.text,
-      text = _ref$text === void 0 ? "Hey There \uD83D\uDC4B<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution \uD83E\uDD13" : _ref$text,
-      _ref$button_text = _ref.button_text,
-      button_text = _ref$button_text === void 0 ? "Need Help?" : _ref$button_text,
-      _ref$chat_name = _ref.chat_name,
-      chat_name = _ref$chat_name === void 0 ? "Support" : _ref$chat_name,
-      _ref$tooltipText = _ref.tooltipText,
-      tooltipText = _ref$tooltipText === void 0 ? "We're on WhatsApp" : _ref$tooltipText,
-      _ref$tooltipTimeout = _ref.tooltipTimeout,
-      tooltipTimeout = _ref$tooltipTimeout === void 0 ? 5000 : _ref$tooltipTimeout;
     _classCallCheck(this, WAChatBox);
-    _defineProperty(this, "iframe", null);
-    _defineProperty(this, "link", null);
-    _defineProperty(this, "user", null);
-    _defineProperty(this, "text", null);
-    _defineProperty(this, "chat_name", null);
-    _defineProperty(this, "button_text", null);
-    _defineProperty(this, "showTooltip", true);
-    _defineProperty(this, "tooltipText", "We're on WhatsApp");
-    _defineProperty(this, "showTooltip", true);
-    _defineProperty(this, "tooltipTimeout", 5000);
     _defineProperty(this, "handleClickOutside", function (event, iframeDocument) {
       var waBox = iframeDocument.querySelector("#wa-box");
-      var toggleButton = iframeDocument.querySelector("#toggleWaBox");
-      if (waBox && waBox.classList.contains("show")) {
-        var isClickInside = event.target.closest("#wa-box") || event.target.closest("#toggleWaBox") || event.target.id === "toggleWaBox";
-        if (!isClickInside) {
-          waBox.classList.remove("show");
-          waBox.classList.add("hide");
-          setTimeout(function () {
-            _this.iframe.style.width = "300px";
-            _this.iframe.style.height = "200px";
-          }, 500);
-        }
+      if (!(waBox !== null && waBox !== void 0 && waBox.classList.contains("show"))) return;
+      var isClickInside = event.target.closest("#wa-box") || event.target.closest("#toggleWaBox") || event.target.id === "toggleWaBox";
+      if (!isClickInside) {
+        _this.toggleChatBox(iframeDocument, "hide");
+      }
+    });
+    _defineProperty(this, "toggleChatBox", function (iframeDocument, forcedAction) {
+      var waBox = iframeDocument.querySelector("#wa-box");
+      var action = forcedAction || (waBox.classList.contains("show") ? "hide" : "show");
+      if (action === "show") {
+        waBox.classList.remove("hide");
+        waBox.classList.add("show");
+        requestAnimationFrame(function () {
+          var _iframeDocument$query, _iframeDocument$query2;
+          (_iframeDocument$query = iframeDocument.querySelector(".chat-box")) === null || _iframeDocument$query === void 0 ? void 0 : _iframeDocument$query.classList.add("show");
+          _this.iframe.style.width = "408px";
+          _this.iframe.style.height = ((_iframeDocument$query2 = iframeDocument.querySelector("#full-waBox")) === null || _iframeDocument$query2 === void 0 ? void 0 : _iframeDocument$query2.offsetHeight) + "px";
+        });
+      } else {
+        waBox.classList.remove("show");
+        waBox.classList.add("hide");
+        setTimeout(function () {
+          _this.iframe.style.width = "300px";
+          _this.iframe.style.height = "200px";
+        }, 500);
       }
     });
     _defineProperty(this, "iframeLoaded", function () {
       var iframeDocument = _this.iframe.contentDocument;
+      if (!iframeDocument) return;
       iframeDocument.body.append(_this.render());
       iframeDocument.body.append(chatBoxStyle);
-      iframeDocument.addEventListener("click", function (e) {
-        _this.handleClickOutside(e, iframeDocument);
-      });
-      iframeDocument.body.querySelector("#open-wa").onclick = function (e) {
-        e.stopPropagation();
-        _this.link && window.open(_this.link, "popup", "width=600,height=600");
-      };
-      var toggleChatBox = function toggleChatBox() {
-        var action = "show";
-        if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
-          action = "hide";
-        }
-        if (action == "show") {
-          iframeDocument.querySelector("#wa-box").classList.remove("hide");
-          iframeDocument.querySelector("#wa-box").classList.add("show");
-          setTimeout(function () {
-            iframeDocument.querySelector(".chat-box").classList.add("show");
-          }, 200);
-          _this.iframe.style.width = "408px";
-          _this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
-        } else {
-          iframeDocument.querySelector("#wa-box").classList.remove("show");
-          iframeDocument.querySelector("#wa-box").classList.add("hide");
-          setTimeout(function () {
-            _this.iframe.style.width = "300px";
-            _this.iframe.style.height = "200px";
-          }, 500);
-        }
-      };
-      iframeDocument.querySelectorAll("#toggleWaBox").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.stopPropagation();
-          toggleChatBox();
-        });
-      });
-      iframeDocument.body.querySelector("#wa-tooltip").addEventListener("click", function (e) {
-        e.stopPropagation();
-        toggleChatBox();
-      });
-      iframeDocument.querySelector("#wa-box").addEventListener("click", function (e) {
-        e.stopPropagation();
-      });
+      _this.setupIframeEventListeners(iframeDocument);
     });
     _defineProperty(this, "render", function () {
+      var _this$config = _this.config,
+        _this$config$user = _this$config.user,
+        user = _this$config$user === void 0 ? {} : _this$config$user,
+        text = _this$config.text,
+        button_text = _this$config.button_text,
+        chat_name = _this$config.chat_name,
+        tooltipText = _this$config.tooltipText;
+      var _user$name = user.name,
+        name = _user$name === void 0 ? '' : _user$name,
+        _user$avatar = user.avatar,
+        avatar = _user$avatar === void 0 ? '' : _user$avatar,
+        _user$status = user.status,
+        status = _user$status === void 0 ? '' : _user$status;
       return createElement("div", {
         className: "fixed bottom-1 right-0 p-3",
         id: "full-waBox",
@@ -639,9 +600,9 @@ var WAChatBox = function () {
         className: "relative flex p-8 py-4"
       }, createElement("div", {
         className: "relative"
-      }, createElement("img", {
-        src: _this.user.avatar,
-        alt: "",
+      }, avatar && createElement("img", {
+        src: avatar,
+        alt: "Website Logo",
         className: "h-16 rounded-full"
       }), createElement("div", {
         className: "absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"
@@ -649,9 +610,9 @@ var WAChatBox = function () {
         className: "flex flex-col p-3"
       }, createElement("div", {
         className: "name-head font-bold"
-      }, _this.user.name), createElement("div", {
+      }, name), createElement("div", {
         className: "replies-in"
-      }, _this.user.status)), createElement("div", {
+      }, status)), createElement("div", {
         className: "text-bold absolute right-2 top-2"
       }, createElement("a", {
         id: "toggleWaBox",
@@ -667,10 +628,10 @@ var WAChatBox = function () {
         className: "chat-box"
       }, createElement("div", {
         className: "chat-name"
-      }, _this.chat_name), createElement("div", {
+      }, chat_name), createElement("div", {
         className: "chat-message",
         dangerouslySetInnerHTML: {
-          __html: _this.text
+          __html: text
         }
       }), createElement("div", {
         className: "chat-time"
@@ -691,7 +652,7 @@ var WAChatBox = function () {
       }, createElement("div", {
         id: "wa-tooltip",
         className: "absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ".concat(_this.showTooltip ? 'opacity-100' : 'opacity-0')
-      }, _this.tooltipText, " ", createElement("div", {
+      }, tooltipText, createElement("div", {
         className: "absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"
       })), createElement("div", {
         className: "relative flex cursor-pointer justify-center rounded-full bg-black p-1 font-semibold text-white need-btn bounce",
@@ -700,7 +661,7 @@ var WAChatBox = function () {
           return e.stopPropagation();
         }
       }, createElement("div", {
-        className: _this.button_text ? "flex mx-4" : "flex"
+        className: button_text ? "flex mx-4" : "flex"
       }, createElement("div", {
         className: "chat-whatsapp-icon"
       }, createElement("div", {
@@ -708,62 +669,106 @@ var WAChatBox = function () {
         dangerouslySetInnerHTML: {
           __html: (whatsapp_default())
         }
-      })), _this.button_text ? createElement("div", {
+      })), button_text ? createElement("div", {
         className: "ml-2 flex items-center justify-center"
-      }, _this.button_text) : ""), createElement("div", {
+      }, button_text) : ""), createElement("div", {
         className: "absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-[#ff0000]"
       }))));
     });
-    this.link = link;
-    this.user = user;
-    this.text = text;
-    this.button_text = button_text;
-    this.chat_name = chat_name;
-    this.tooltipText = tooltipText;
-    this.tooltipTimeout = tooltipTimeout;
-    this.iframe = document.createElement("iframe");
-    this.iframe.onload = this.iframeLoaded;
-    this.iframe.src = "about:blank";
-    document.body.append(this.iframe);
-    this.iframe.style.position = "fixed";
-    this.iframe.style.top = "50%";
-    this.iframe.style.transform = "translateY(-50%)";
-    this.iframe.style.bottom = "0";
-    this.iframe.style.right = "0";
-    this.iframe.style.maxWidth = "100%";
-    this.iframe.style.width = "300px";
-    this.iframe.style.height = "200px";
-    this.iframe.style.border = "none";
-    this.iframe.style.zIndex = "999999999";
-    document.addEventListener("click", function (e) {
-      if (_this.iframe.contentDocument) {
-        _this.handleClickOutside(e, _this.iframe.contentDocument);
-      }
-    });
-    setTimeout(function () {
-      _this.showTooltip = false;
-      if (_this.iframe.contentDocument) {
-        var tooltip = _this.iframe.contentDocument.querySelector("#wa-tooltip");
-        if (tooltip) {
-          tooltip.remove();
-        }
-      }
-    }, this.tooltipTimeout);
+    this.config = _objectSpread(_objectSpread({}, WAChatBox.DEFAULT_CONFIG), config);
+    this.showTooltip = true;
+    this.setupIframe();
+    this.bindEvents();
   }
   _createClass(WAChatBox, [{
+    key: "setupIframe",
+    value: function setupIframe() {
+      this.iframe = document.createElement("iframe");
+      this.iframe.onload = this.iframeLoaded;
+      this.iframe.src = "about:blank";
+      Object.assign(this.iframe.style, {
+        position: "fixed",
+        top: "50%",
+        transform: "translateY(-50%)",
+        bottom: "0",
+        right: "0",
+        maxWidth: "100%",
+        width: "300px",
+        height: "200px",
+        border: "none",
+        zIndex: "999999999"
+      });
+      document.body.append(this.iframe);
+    }
+  }, {
+    key: "bindEvents",
+    value: function bindEvents() {
+      var _this2 = this;
+      var handleDocumentClick = function handleDocumentClick(e) {
+        if (_this2.iframe.contentDocument) {
+          _this2.handleClickOutside(e, _this2.iframe.contentDocument);
+        }
+      };
+      document.addEventListener("click", handleDocumentClick);
+      setTimeout(function () {
+        var _this2$iframe$content;
+        _this2.showTooltip = false;
+        var tooltip = (_this2$iframe$content = _this2.iframe.contentDocument) === null || _this2$iframe$content === void 0 ? void 0 : _this2$iframe$content.querySelector("#wa-tooltip");
+        tooltip === null || tooltip === void 0 ? void 0 : tooltip.remove();
+      }, this.config.tooltipTimeout);
+    }
+  }, {
     key: "formatTime",
     value: function formatTime(date) {
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
+      var hours = date.getHours() % 12 || 12;
+      var minutes = String(date.getMinutes()).padStart(2, '0');
+      var ampm = date.getHours() >= 12 ? 'PM' : 'AM';
       return "".concat(hours, ":").concat(minutes, " ").concat(ampm);
+    }
+  }, {
+    key: "setupIframeEventListeners",
+    value: function setupIframeEventListeners(iframeDocument) {
+      var _this3 = this;
+      iframeDocument.addEventListener("click", function (e) {
+        return _this3.handleClickOutside(e, iframeDocument);
+      });
+      var openWa = iframeDocument.querySelector("#open-wa");
+      openWa === null || openWa === void 0 ? void 0 : openWa.addEventListener("click", function (e) {
+        e.stopPropagation();
+        _this3.config.link && window.open(_this3.config.link, "popup", "width=600,height=600");
+      });
+      iframeDocument.querySelectorAll("#toggleWaBox").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.stopPropagation();
+          _this3.toggleChatBox(iframeDocument);
+        });
+      });
+      var waTooltip = iframeDocument.querySelector("#wa-tooltip");
+      waTooltip === null || waTooltip === void 0 ? void 0 : waTooltip.addEventListener("click", function (e) {
+        e.stopPropagation();
+        _this3.toggleChatBox(iframeDocument);
+      });
+      var waBox = iframeDocument.querySelector("#wa-box");
+      waBox === null || waBox === void 0 ? void 0 : waBox.addEventListener("click", function (e) {
+        return e.stopPropagation();
+      });
     }
   }]);
   return WAChatBox;
 }();
+_defineProperty(WAChatBox, "DEFAULT_CONFIG", {
+  link: "https://wa.me/919999999999",
+  user: {
+    name: "Alice",
+    avatar: "https://randomuser.me/api/portraits/women/66.jpg",
+    status: "Typically replies within an hour"
+  },
+  text: "Hey There \uD83D\uDC4B<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution \uD83E\uDD13",
+  button_text: "Need Help?",
+  chat_name: "Support",
+  tooltipText: "We're on WhatsApp",
+  tooltipTimeout: 5000
+});
 /* harmony default export */ const app = (WAChatBox);
 ;// CONCATENATED MODULE: ./index.js
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }

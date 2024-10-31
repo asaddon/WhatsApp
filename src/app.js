@@ -3,164 +3,150 @@ import whatsappSvg from "./whatsapp.svg";
 import crossSvg from "./cross.svg";
 
 class WAChatBox {
-  iframe = null;
-  link = null;
-  user = null;
-  text = null;
-  chat_name = null;
-  button_text = null;
-  showTooltip = true; // New state for tooltip visibility
-  tooltipText = "We're on WhatsApp"; // Default tooltip text
-  showTooltip = true; 
-  tooltipTimeout = 5000; // Default tooltip timeout in milliseconds
+  static DEFAULT_CONFIG = {
+    link: "https://wa.me/919999999999",
+    user: {
+      name: "Alice",
+      avatar: "https://randomuser.me/api/portraits/women/66.jpg",
+      status: "Typically replies within an hour",
+    },
+    text: `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
+    button_text: "Need Help?",
+    chat_name: "Support",
+    tooltipText: "We're on WhatsApp",
+    tooltipTimeout: 5000,
+  };
+
+  constructor(config) {
+    this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config };
+    this.showTooltip = true;
+    this.setupIframe();
+    this.bindEvents();
+  }
+
+  setupIframe() {
+    this.iframe = document.createElement("iframe");
+    this.iframe.onload = this.iframeLoaded;
+    this.iframe.src = "about:blank";
+    
+    Object.assign(this.iframe.style, {
+      position: "fixed",
+      top: "50%",
+      transform: "translateY(-50%)",
+      bottom: "0",
+      right: "0",
+      maxWidth: "100%",
+      width: "300px",
+      height: "200px",
+      border: "none",
+      zIndex: "999999999"
+    });
+
+    document.body.append(this.iframe);
+  }
+
+  bindEvents() {
+    const handleDocumentClick = (e) => {
+      if (this.iframe.contentDocument) {
+        this.handleClickOutside(e, this.iframe.contentDocument);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+
+    // Cleanup tooltip after timeout
+    setTimeout(() => {
+      this.showTooltip = false;
+      const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
+      tooltip?.remove();
+    }, this.config.tooltipTimeout);
+  }
 
   formatTime(date) {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-
+    const hours = date.getHours() % 12 || 12;
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
     return `${hours}:${minutes} ${ampm}`;
   }
 
   handleClickOutside = (event, iframeDocument) => {
     const waBox = iframeDocument.querySelector("#wa-box");
-    const toggleButton = iframeDocument.querySelector("#toggleWaBox");
+    if (!waBox?.classList.contains("show")) return;
+
+    const isClickInside = event.target.closest("#wa-box") || 
+                         event.target.closest("#toggleWaBox") ||
+                         event.target.id === "toggleWaBox";
     
-    if (waBox && waBox.classList.contains("show")) {
-      const isClickInside = event.target.closest("#wa-box") || 
-                           event.target.closest("#toggleWaBox") ||
-                           event.target.id === "toggleWaBox";
-      
-      if (!isClickInside) {
-        waBox.classList.remove("show");
-        waBox.classList.add("hide");
-        setTimeout(() => {
-          this.iframe.style.width = "300px"; // Updated width
-          this.iframe.style.height = "200px";
-        }, 500);
-      }
+    if (!isClickInside) {
+      this.toggleChatBox(iframeDocument, "hide");
     }
   };
 
-  constructor({
-    link = "https://wa.me/919999999999",
-    user = {
-      name: "Alice",
-      avatar: "https://randomuser.me/api/portraits/women/66.jpg",
-      status: "Typically replies within an hour",
-    },
-    text = `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
-    button_text = "Need Help?",
-    chat_name = "Support",
-    tooltipText = "We're on WhatsApp", // New parameter for tooltip text
-    tooltipTimeout = 5000, // New parameter for tooltip timeout
-  }) {
-    this.link = link;
-    this.user = user;
-    this.text = text;
-    this.button_text = button_text;
-    this.chat_name = chat_name;
-    this.tooltipText = tooltipText; // Assigning the tooltip text
-    this.tooltipTimeout = tooltipTimeout;
-    this.iframe = document.createElement("iframe");
-    this.iframe.onload = this.iframeLoaded;
-    this.iframe.src = "about:blank";
-    document.body.append(this.iframe);
-    this.iframe.style.position = "fixed";
-    this.iframe.style.top = "50%";
-    this.iframe.style.transform = "translateY(-50%)";
-    this.iframe.style.bottom = "0";
-    this.iframe.style.right = "0";
-    this.iframe.style.maxWidth = "100%";
-    this.iframe.style.width = "300px"; // Updated width
-    this.iframe.style.height = "200px";
-    this.iframe.style.border = "none";
-    this.iframe.style.zIndex = "999999999";
+  toggleChatBox = (iframeDocument, forcedAction) => {
+    const waBox = iframeDocument.querySelector("#wa-box");
+    const action = forcedAction || (waBox.classList.contains("show") ? "hide" : "show");
 
-    document.addEventListener("click", (e) => {
-      if (this.iframe.contentDocument) {
-        this.handleClickOutside(e, this.iframe.contentDocument);
-      }
-    });
-
-    // Hide tooltip after 5 seconds
-    setTimeout(() => {
-    this.showTooltip = false;
-    if (this.iframe.contentDocument) {
-        const tooltip = this.iframe.contentDocument.querySelector("#wa-tooltip");
-        if (tooltip) {
-            tooltip.remove(); // Completely remove the tooltip from the DOM
-        }
+    if (action === "show") {
+      waBox.classList.remove("hide");
+      waBox.classList.add("show");
+      
+      requestAnimationFrame(() => {
+        iframeDocument.querySelector(".chat-box")?.classList.add("show");
+        this.iframe.style.width = "408px";
+        this.iframe.style.height = iframeDocument.querySelector("#full-waBox")?.offsetHeight + "px";
+      });
+    } else {
+      waBox.classList.remove("show");
+      waBox.classList.add("hide");
+      
+      setTimeout(() => {
+        this.iframe.style.width = "300px";
+        this.iframe.style.height = "200px";
+      }, 500);
     }
-}, this.tooltipTimeout);
-  }
+  };
 
   iframeLoaded = () => {
-    let iframeDocument = this.iframe.contentDocument;
+    const iframeDocument = this.iframe.contentDocument;
+    if (!iframeDocument) return;
+
     iframeDocument.body.append(this.render());
     iframeDocument.body.append(chatBoxStyle);
 
-    iframeDocument.addEventListener("click", (e) => {
-        this.handleClickOutside(e, iframeDocument);
+    this.setupIframeEventListeners(iframeDocument);
+  };
+
+  setupIframeEventListeners(iframeDocument) {
+    iframeDocument.addEventListener("click", (e) => this.handleClickOutside(e, iframeDocument));
+
+    const openWa = iframeDocument.querySelector("#open-wa");
+    openWa?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.config.link && window.open(this.config.link, "popup", "width=600,height=600");
     });
 
-    // Open link when clicking on the open-wa element
-    iframeDocument.body.querySelector("#open-wa").onclick = (e) => {
+    iframeDocument.querySelectorAll("#toggleWaBox").forEach(el => {
+      el.addEventListener("click", (e) => {
         e.stopPropagation();
-        this.link && window.open(this.link, "popup", "width=600,height=600");
-    };
-
-    // Function to toggle the chat box
-    const toggleChatBox = () => {
-        let action = "show";
-        if (iframeDocument.querySelector("#wa-box").classList.contains("show")) {
-            action = "hide";
-        }
-
-        if (action == "show") {
-            iframeDocument.querySelector("#wa-box").classList.remove("hide");
-            iframeDocument.querySelector("#wa-box").classList.add("show");
-            setTimeout(() => {
-                iframeDocument.querySelector(".chat-box").classList.add("show");
-            }, 200);
-
-            this.iframe.style.width = "408px";
-            this.iframe.style.height = iframeDocument.querySelector("#full-waBox").offsetHeight + "px";
-        } else {
-            iframeDocument.querySelector("#wa-box").classList.remove("show");
-            iframeDocument.querySelector("#wa-box").classList.add("hide");
-            setTimeout(() => {
-                this.iframe.style.width = "300px"; // Updated width
-                this.iframe.style.height = "200px";
-            }, 500);
-        }
-    };
-
-    // Add click event listener for toggleWaBox elements
-    iframeDocument.querySelectorAll("#toggleWaBox").forEach((el) => {
-        el.addEventListener("click", (e) => {
-            e.stopPropagation();
-            toggleChatBox();
-        });
+        this.toggleChatBox(iframeDocument);
+      });
     });
 
-    // Add click event listener for wa-tooltip element
-    iframeDocument.body.querySelector("#wa-tooltip").addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleChatBox();
+    const waTooltip = iframeDocument.querySelector("#wa-tooltip");
+    waTooltip?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.toggleChatBox(iframeDocument);
     });
 
-    // Prevent click event from propagating when clicking on the wa-box
-    iframeDocument.querySelector("#wa-box").addEventListener("click", (e) => {
-        e.stopPropagation();
-    });
-};
+    const waBox = iframeDocument.querySelector("#wa-box");
+    waBox?.addEventListener("click", (e) => e.stopPropagation());
+  }
+
 
   render = () => {
+    const { user = {}, text, button_text, chat_name, tooltipText } = this.config;
+    const { name = '', avatar = '', status = '' } = user;
+  
     return (
       <div className="fixed bottom-1 right-0 p-3" id="full-waBox" onClick={(e) => e.stopPropagation()}>
         <div 
@@ -171,12 +157,12 @@ class WAChatBox {
         >
           <div className="relative flex p-8 py-4">
             <div className="relative">
-              <img src={this.user.avatar} alt="" className="h-16 rounded-full" />
+              {avatar && <img src={avatar} alt="Website Logo" className="h-16 rounded-full" />}
               <div className="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
             </div>
             <div className="flex flex-col p-3">
-              <div className="name-head font-bold">{this.user.name}</div>
-              <div className="replies-in">{this.user.status}</div>
+              <div className="name-head font-bold">{name}</div>
+              <div className="replies-in">{status}</div>
             </div>
             <div className="text-bold absolute right-2 top-2">
               <a id="toggleWaBox" className="cursor-pointer">
@@ -186,8 +172,8 @@ class WAChatBox {
           </div>
           <div className="chat-bg relative bg-slate-900 p-7">
             <div className="chat-box">
-              <div className="chat-name">{this.chat_name}</div>
-              <div className="chat-message" dangerouslySetInnerHTML={{ __html: this.text }}></div>
+              <div className="chat-name">{chat_name}</div>
+              <div className="chat-message" dangerouslySetInnerHTML={{ __html: text }}></div>
               <div className="chat-time">{this.formatTime(new Date())}</div>
             </div>
           </div>
@@ -202,26 +188,24 @@ class WAChatBox {
           </div>
         </div>
         <div className="relative float-right my-4 flex cursor-pointer group">
-          {/* Tooltip */}
           <div 
             id="wa-tooltip"
             className={`absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`}
           >
-            {this.tooltipText} {/* Use the configurable tooltip text */}
+            {tooltipText}
             <div className="absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
           </div>
           
-          {/* Existing button */}
           <div 
             className="relative flex cursor-pointer justify-center rounded-full bg-black p-1 font-semibold text-white need-btn bounce" 
             id="toggleWaBox"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={this.button_text ? "flex mx-4" : "flex"}>
+            <div className={button_text ? "flex mx-4" : "flex"}>
               <div className="chat-whatsapp-icon">
                 <div className="w-5 h-5" dangerouslySetInnerHTML={{ __html: whatsappSvg }} />
               </div>
-              {this.button_text ? <div className="ml-2 flex items-center justify-center">{this.button_text}</div> : ""}
+              {button_text ? <div className="ml-2 flex items-center justify-center">{button_text}</div> : ""}
             </div>
             <div className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-[#ff0000]"></div>
           </div>
