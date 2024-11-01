@@ -5,7 +5,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   entry: "./index.js",
   output: {
-    filename: "WhatsAppChatBox.js",
+    filename: "WhatsAppChatBox.min.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -49,6 +49,6 @@ module.exports = {
     }),
   ],
   optimization: {
-   minimize: false, // Disable minimization
+   minimize: true, // Enable minimization
   },
 };
