@@ -696,7 +696,7 @@ var WAChatBox = function () {
         width: "300px",
         height: "200px",
         border: "none",
-        zIndex: "999999999"
+        zIndex: "10"
       });
       document.body.append(this.iframe);
     }
