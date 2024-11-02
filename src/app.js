@@ -146,7 +146,7 @@ class WAChatBox {
     const { name = '', avatar = '', status = '' } = user;
   
     return (
-      <div className="fixed bottom-1 right-0 p-3" id="full-waBox" onClick={(e) => e.stopPropagation()}>
+      <div className="fixed bottom-1 left-0 p-3" id="full-waBox" onClick={(e) => e.stopPropagation()}>
         <div 
           className="max-w-sm overflow-hidden rounded-lg bg-slate-900 shadow-lg" 
           style="display: none" 
@@ -185,13 +185,13 @@ class WAChatBox {
               </a> </div>
           </div>
         </div>
-        <div className="relative float-right my-4 flex cursor-pointer group">
+        <div className="relative float-left my-4 flex cursor-pointer group">
           <div 
             id="wa-tooltip"
-            className={`absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-black text-white px-4 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`}
           >
             {tooltipText}
-            <div className="absolute top-1/2 -translate-y-1/2 right-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
+            <div className="absolute top-1/2 -translate-y-1/2 left-[-6px] w-0 h-0 border-y-[6px] border-y-transparent border-l-[6px] border-l-black"></div>
           </div>
           
           <div 
