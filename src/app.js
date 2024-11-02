@@ -31,10 +31,8 @@ class WAChatBox {
     
     Object.assign(this.iframe.style, {
       position: "fixed",
-      top: "50%",
-      transform: "translateY(-50%)",
       bottom: "0",
-      right: "0",
+      left: "0",
       maxWidth: "100%",
       width: "300px",
       height: "200px",
