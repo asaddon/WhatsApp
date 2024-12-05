@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WA Chat Box Example</title>
 </head>
-<body>
-    <body background="https://images.unsplash.com/photo-1675004865285-d0afc22903cf?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3Nzc0NzUxOA&ixlib=rb-4.0.3&q=80&w=1920"></body>
+<body background="https://images.unsplash.com/photo-1675004865285-d0afc22903cf?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3Nzc0NzUxOA&ixlib=rb-4.0.3&q=80&w=1920"></body>
     <script>
         (function() {
             let chatBoxInitialized = false;
@@ -39,18 +38,9 @@
                 }
             }
 
-            // Add event listeners for user interactions
-            function onUserInteraction() {  // Corrected function name
-                if (!chatBoxInitialized) {
-                    loadChatBoxScript(initializeChatBox); // Load the script and initialize the chat box
-                }
-            }
+            // Immediately load the script and initialize the chat box
+            loadChatBoxScript(initializeChatBox);
 
-            window.addEventListener('scroll', onUserInteraction);
-            window.addEventListener('mousedown', onUserInteraction);
-            window.addEventListener('mousemove', onUserInteraction);
-            window.addEventListener('touchstart', onUserInteraction);
-            window.addEventListener('keydown', onUserInteraction);
         })(); // Immediately invoke the function
     </script>
 </body>
