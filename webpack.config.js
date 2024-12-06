@@ -23,8 +23,8 @@ module.exports = {
           {
             loader: "style-loader",
             options: {
-              insert: function insertIntoTarget(element, options) {
-                window.chatBoxStyle = element;
+              insert: (element) => {
+                window.chatBoxStyle = element; // Custom insert function
               },
             },
           },
