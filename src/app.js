@@ -195,13 +195,13 @@ class WAChatBox {
           </div>
           
           <div 
-            className="relative flex cursor-pointer justify-center rounded-full bg-black p-1 font-semibold text-white need-btn bounce" 
+           className="relative flex cursor-pointer justify-center rounded-full bg-gradient-to-b from-[#44e583] to-[#25D366] p-1 font-semibold text-white shadow-[0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08)] transform perspective-1000 need-btn bounce"
             id="toggleWaBox"
             onClick={(e) => e.stopPropagation()}
           >
             <div className={button_text ? "flex mx-4" : "flex"}>
               <div className="chat-whatsapp-icon">
-                <div className="w-5 h-5" dangerouslySetInnerHTML={{ __html: whatsappSvg }} />
+                <div className="w-5 h-5" dangerouslySetInnerHTML={{ __html: whatsappSvg.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
               </div>
               {button_text ? <div className="ml-2 flex items-center justify-center">{button_text}</div> : ""}
             </div>
