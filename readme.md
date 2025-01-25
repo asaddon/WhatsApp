@@ -1,8 +1,9 @@
 # WhatsApp Chat widget for websites
 
-Demo: https://asaddon.github.io/WhatsApp/
+For Full Animation Preview see Demo: https://asaddon.github.io/WhatsApp/
 
-![Screenshot 2024-11-03 at 3 49 35 AM](https://github.com/user-attachments/assets/049384d4-5d38-496c-84eb-a207d9d34489)
+![Screenshot 2025-01-26 at 4 00 34 AM](https://github.com/user-attachments/assets/5d6e134d-1ecd-4396-a531-70da583580ab)
+
 ## Instructions
 
 * Download <a href="https://cdn.jsdelivr.net/gh/asaddon/WhatsApp@refs/heads/main/dist/WhatsAppChatBox.min.js">WhatsappChatBox.min.js</a> from here.<br>
