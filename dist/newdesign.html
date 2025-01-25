@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Chat Widget</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Widget styling */
+    .chaty-widget {
+      position: fixed;
+      bottom: 50px;
+      left: 20px; /* Move the button to the left side */
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .chaty-widget-i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #49E670;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: relative;
+      -webkit-animation: shockwaveJump 1s ease-out infinite; /* Shockwave Jump Animation */
+      animation: shockwaveJump 1s ease-out infinite; /* Shockwave Jump Animation */
+    }
+
+    /* Red circle for unread message */
+    .unread-indicator {
+      position: absolute;
+      right: 1px; /* Adjust position */
+      top: 1px; /* Adjust position */
+      height: 14px; /* Size of the circle */
+      width: 14px; /* Size of the circle */
+      border-radius: 50%;
+      background-color: #ff0000; /* Red color */
+      border: 2px solid white; /* Optional: Add a white border */
+    }
+
+    /* Shockwave effect */
+    #chaty-animation-0:after,
+    #chaty-animation-0:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: 50%;
+    }
+
+    #chaty-animation-0:after {
+      -webkit-animation: shockwave 1s 0.65s ease-out infinite;
+      animation: shockwave 1s 0.65s ease-out infinite;
+    }
+
+    #chaty-animation-0:before {
+      -webkit-animation: shockwave 1s 0.5s ease-out infinite;
+      animation: shockwave 1s 0.5s ease-out infinite;
+    }
+
+    /* Tooltip styling */
+    .chaty-widget-i-title {
+      position: fixed; /* Use fixed positioning to separate from the button */
+      left: 105px; /* Position the tooltip to the right of the button */
+      bottom: 65px; /* Align with the button's vertical position */
+      background-color: #fff;
+      color: #333;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 1001; /* Ensure tooltip is above the button */
+      transition: opacity 0.5s ease; /* Smooth fade-out effect */
+    }
+
+    /* Add a pointy arrow on the left side of the tooltip */
+    .chaty-widget-i-title::after {
+      content: '';
+      position: absolute;
+      left: -10px; /* Position the arrow on the left */
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 10px solid #fff; /* Arrow color */
+    }
+
+    /* Hide tooltip */
+    .chaty-widget-i-title.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Typewriter effect for tooltip text */
+    .chaty-widget-i-title p {
+      font-size: 14px;
+      overflow: hidden;
+      border-right: 0.15em solid black;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 1.5s steps(26, end), blink-caret 0.5s step-end infinite;
+    }
+
+    /* The typing effect */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    /* The typewriter cursor effect */
+    @keyframes blink-caret {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: orange;
+      }
+    }
+
+    /* Shockwave Jump Animation */
+    @-webkit-keyframes shockwaveJump {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      40% {
+        -webkit-transform: scale(1.08);
+        transform: scale(1.08);
+      }
+      50% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+      }
+      55% {
+        -webkit-transform: scale(1.02);
+        transform: scale(1.02);
+      }
+      60% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shockwaveJump {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      40% {
+        -webkit-transform: scale(1.08);
+        transform: scale(1.08);
+      }
+      50% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+      }
+      55% {
+        -webkit-transform: scale(1.02);
+        transform: scale(1.02);
+      }
+      60% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    /* Shockwave Animation */
+    @-webkit-keyframes shockwave {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+      }
+      95% {
+        box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+      }
+      100% {
+        -webkit-transform: scale(2.25);
+        transform: scale(2.25);
+      }
+    }
+
+    @keyframes shockwave {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+      }
+      95% {
+        box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+      }
+      100% {
+        -webkit-transform: scale(2.25);
+        transform: scale(2.25);
+      }
+    }
+
+    /* Jump Animation */
+    .btn--jump.is-active {
+      -webkit-animation: 0.4s jump ease infinite alternate;
+      animation: 0.4s jump ease infinite alternate;
+    }
+
+    @-webkit-keyframes jump {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      }
+      100% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    @keyframes jump {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      }
+      100% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* Make the white inner logo bigger */
+    .animation-svg {
+      width: 50px; /* Increased from 39px */
+      height: 50px; /* Increased from 39px */
+      position: relative;
+    }
+
+    .animation-svg svg {
+      width: 100%; /* Make SVG fill the container */
+      height: 100%; /* Make SVG fill the container */
+    }
+  </style>
+</head>
+<body>
+  <!-- WhatsApp Chat Widget -->
+  <div class="chaty-widget">
+    <div class="chaty-widget-i btn--jump is-active" id="chaty-animation-0">
+      <a class="set-url-target" rel="noopener" target="_blank" href="https://web.whatsapp.com/send?phone=9221111225111">
+        <span class="sr-only">Hi, I am here to assist you.</span>
+        <div class="animation-svg chaty-animation-fade">
+          <svg aria-hidden="true" class="ico_d" width="50" height="50" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(0deg);">
+            <circle class="color-element" cx="19.4395" cy="19.4395" r="19.4395" fill="#49E670"></circle>
+            <path d="M12.9821 10.1115C12.7029 10.7767 11.5862 11.442 10.7486 11.575C10.1902 11.7081 9.35269 11.8411 6.84003 10.7767C3.48981 9.44628 1.39593 6.25317 1.25634 6.12012C1.11674 5.85403 2.13001e-06 4.39053 2.13001e-06 2.92702C2.13001e-06 1.46351 0.83755 0.665231 1.11673 0.399139C1.39592 0.133046 1.8147 1.01506e-06 2.23348 1.01506e-06C2.37307 1.01506e-06 2.51267 1.01506e-06 2.65226 1.01506e-06C2.93144 1.01506e-06 3.21063 -2.02219e-06 3.35022 0.532183C3.62941 1.19741 4.32736 2.66092 4.32736 2.79397C4.46696 2.92702 4.46696 3.19311 4.32736 3.32616C4.18777 3.59225 4.18777 3.59224 3.90858 3.85834C3.76899 3.99138 3.6294 4.12443 3.48981 4.39052C3.35022 4.52357 3.21063 4.78966 3.35022 5.05576C3.48981 5.32185 4.18777 6.38622 5.16491 7.18449C6.42125 8.24886 7.39839 8.51496 7.81717 8.78105C8.09636 8.91409 8.37554 8.9141 8.65472 8.648C8.93391 8.38191 9.21309 7.98277 9.49228 7.58363C9.77146 7.31754 10.0507 7.1845 10.3298 7.31754C10.609 7.45059 12.2841 8.11582 12.5633 8.38191C12.8425 8.51496 13.1217 8.648 13.1217 8.78105C13.1217 8.78105 13.1217 9.44628 12.9821 10.1115Z" transform="translate(12.9597 12.9597)" fill="#FAFAFA"></path>
+            <path d="M0.196998 23.295L0.131434 23.4862L0.323216 23.4223L5.52771 21.6875C7.4273 22.8471 9.47325 23.4274 11.6637 23.4274C18.134 23.4274 23.4274 18.134 23.4274 11.6637C23.4274 5.19344 18.134 -0.1 11.6637 -0.1C5.19344 -0.1 -0.1 5.19344 -0.1 11.6637C-0.1 13.9996 0.624492 16.3352 1.93021 18.2398L0.196998 23.295ZM5.87658 19.8847L5.84025 19.8665L5.80154 19.8788L2.78138 20.8398L3.73978 17.9646L3.75932 17.906L3.71562 17.8623L3.43104 17.5777C2.27704 15.8437 1.55796 13.8245 1.55796 11.6637C1.55796 6.03288 6.03288 1.55796 11.6637 1.55796C17.2945 1.55796 21.7695 6.03288 21.7695 11.6637C21.7695 17.2945 17.2945 21.7695 11.6637 21.7695C9.64222 21.7695 7.76778 21.1921 6.18227 20.039L6.17557 20.0342L6.16817 20.0305L5.87658 19.8847Z" transform="translate(7.7758 7.77582)" fill="white" stroke="white" stroke-width="0.2"></path>
+          </svg>
+        </div>
+        <!-- Red circle for unread message -->
+        <div class="unread-indicator"></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Tooltip (separated from the button) -->
+  <div class="chaty-widget-i-title" id="tooltip">
+    <p>Hi, I am here to assist you.</p>
+  </div>
+
+  <script>
+    // Hide the tooltip after 30 seconds
+    setTimeout(function () {
+      const tooltip = document.getElementById('tooltip');
+      if (tooltip) {
+        tooltip.classList.add('hide'); // Add the 'hide' class to fade out the tooltip
+      }
+    }, 30000); // 30 seconds
+  </script>
+</body>
+</html>

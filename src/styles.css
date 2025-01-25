@@ -46,6 +46,279 @@
     opacity: 0.08;
   }
 
+  .chaty-widget {
+    position: fixed;
+    bottom: 50px;
+    left: 20px; /* Move the button to the left side */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+  }
+
+  .chaty-widget-i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #49E670;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    -webkit-animation: shockwaveJump 1s ease-out infinite; /* Shockwave Jump Animation */
+    animation: shockwaveJump 1s ease-out infinite; /* Shockwave Jump Animation */
+  }
+
+  /* Red circle for unread message */
+  .unread-indicator {
+    position: absolute;
+    right: 1px; /* Adjust position */
+    top: 1px; /* Adjust position */
+    height: 14px; /* Size of the circle */
+    width: 14px; /* Size of the circle */
+    border-radius: 50%;
+    background-color: #ff0000; /* Red color */
+    border: 2px solid white; /* Optional: Add a white border */
+  }
+
+  /* Shockwave effect */
+  #chaty-animation-0:after,
+  #chaty-animation-0:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+  }
+
+  #chaty-animation-0:after {
+    -webkit-animation: shockwave 1s 0.65s ease-out infinite;
+    animation: shockwave 1s 0.65s ease-out infinite;
+  }
+
+  #chaty-animation-0:before {
+    -webkit-animation: shockwave 1s 0.5s ease-out infinite;
+    animation: shockwave 1s 0.5s ease-out infinite;
+  }
+
+  /* Tooltip styling */
+  .chaty-widget-i-title {
+    position: absolute; /* Use fixed positioning to separate from the button */
+    left: 75px; /* Position the tooltip to the right of the button */
+    bottom: 15px; /* Align with the button's vertical position */
+    background-color: #fff;
+    color: #000;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1001; /* Ensure tooltip is above the button */
+    transition: opacity 0.5s ease; /* Smooth fade-out effect */
+  }
+
+  /* Add a pointy arrow on the left side of the tooltip */
+  .chaty-widget-i-title::after {
+    content: '';
+    position: absolute;
+    left: -10px; /* Position the arrow on the left */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #fff; /* Arrow color */
+  }
+
+  /* Hide tooltip */
+  .chaty-widget-i-title.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Typewriter effect for tooltip text */
+  .chaty-widget-i-title p {
+    font-size: 14px;
+    overflow: hidden;
+    border-right: 0.15em solid black;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 1.5s steps(26, end), blink-caret 0.5s step-end infinite;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+
+  /* Shockwave Jump Animation */
+  @-webkit-keyframes shockwaveJump {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+    40% {
+      -webkit-transform: scale(1.08);
+      transform: scale(1.08);
+    }
+    50% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+    }
+    55% {
+      -webkit-transform: scale(1.02);
+      transform: scale(1.02);
+    }
+    60% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shockwaveJump {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+    40% {
+      -webkit-transform: scale(1.08);
+      transform: scale(1.08);
+    }
+    50% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+    }
+    55% {
+      -webkit-transform: scale(1.02);
+      transform: scale(1.02);
+    }
+    60% {
+      -webkit-transform: scale(0.98);
+      transform: scale(0.98);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  /* Shockwave Animation */
+  @-webkit-keyframes shockwave {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+    95% {
+      box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+    }
+    100% {
+      -webkit-transform: scale(2.25);
+      transform: scale(2.25);
+    }
+  }
+
+  @keyframes shockwave {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+    95% {
+      box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
+    }
+    100% {
+      -webkit-transform: scale(2.25);
+      transform: scale(2.25);
+    }
+  }
+
+  /* Jump Animation */
+  .btn--jump.is-active {
+    -webkit-animation: 0.4s jump ease infinite alternate;
+    animation: 0.4s jump ease infinite alternate;
+  }
+
+  @-webkit-keyframes jump {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+    100% {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  @keyframes jump {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+    100% {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /* Make the white inner logo bigger */
+  .animation-svg {
+    width: 50px; /* Increased from 39px */
+    height: 50px; /* Increased from 39px */
+    position: relative;
+  }
+
+  .animation-svg svg {
+    width: 100%; /* Make SVG fill the container */
+    height: 100%; /* Make SVG fill the container */
+  }
+
+
+
+
+
   .chat-box {
     --padding: 7px 14px 6px;
     padding: var(--padding);
@@ -138,8 +411,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
   }
 
   .replies-in {
