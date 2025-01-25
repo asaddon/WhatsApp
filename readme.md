@@ -23,8 +23,7 @@ Configure with your settings
                         },
                         chat_name: "Sales", 
                         text: "Hey There 👋<br>Let's talk to get a Price Quote!",
-                        button_text: "",
-                        tooltipText: "We're on WhatsApp!",
+                        tooltipText: "Hi, I am here to assist you!",
                         tooltipTimeout: 15000,
   });
  ```

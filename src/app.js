@@ -17,7 +17,6 @@ class WAChatBox {
       status: "Typically replies within an hour",
     },
     text: `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
-    button_text: "Need Help?",
     chat_name: "Support",
     tooltipText: "We're on WhatsApp",
     tooltipTimeout: 5000,
@@ -162,7 +161,7 @@ class WAChatBox {
 
 
   render = () => {
-    const { user = {}, text, button_text, chat_name, tooltipText } = this.config;
+    const { user = {}, text, chat_name, tooltipText } = this.config;
     const { name = '', avatar = '', status = '' } = user;
   
     return (
