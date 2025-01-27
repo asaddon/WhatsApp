@@ -40,7 +40,7 @@ class WAChatBox {
       left: "0",
       maxWidth: "100%",
       width: "300px",
-      height: "200px",
+      height: "150px",
       border: "none",
       zIndex: "10"
     });
@@ -58,11 +58,16 @@ class WAChatBox {
     document.addEventListener("click", handleDocumentClick);
 
     // Cleanup tooltip after timeout
-    setTimeout(() => {
-      this.showTooltip = false;
-      const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
-      tooltip?.remove();
-    }, this.config.tooltipTimeout);
+  setTimeout(() => {
+  this.showTooltip = false;
+  const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
+  tooltip?.remove();
+  // Resize the iframe to 100px by 120px only if the chat box is not open
+  if (!this.iframe.contentDocument?.querySelector("#wa-box")?.classList.contains("show")) {
+    this.iframe.style.width = "100px";
+    this.iframe.style.height = "120px";
+  }
+}, this.config.tooltipTimeout);
   }
 
   formatTime(date) {
@@ -115,12 +120,12 @@ class WAChatBox {
         startChatButton.style.pointerEvents = "none"; // Disable pointer events
         startChatButton.style.opacity = "0.5"; // Visually indicate it's disabled
       }
-  
+      if (!this.showTooltip) {
       setTimeout(() => {
-        this.iframe.style.width = "300px";
-        this.iframe.style.height = "200px";
+        this.iframe.style.width = "100px";
+        this.iframe.style.height = "120px";
       }, 500); // Match the timeout duration with the CSS transition
-    }
+    }}
   };
 
   iframeLoaded = () => {
