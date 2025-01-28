@@ -41,9 +41,13 @@ class WAChatBox {
       maxWidth: "100%",
       width: "300px",
       height: "150px",
-      border: "none",
-      zIndex: "10"
-    });
+      border: "none", 
+      outline: "none", 
+      zIndex: "10",
+      boxShadow: "none", 
+      willChange: "transform, opacity",
+   });
+   
 
     document.body.append(this.iframe);
   }
