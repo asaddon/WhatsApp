@@ -94,8 +94,8 @@
     position: absolute; /* Use fixed positioning to separate from the button */
     left: 75px; /* Position the tooltip to the right of the button */
     bottom: 15px; /* Align with the button's vertical position */
-    background-color: #fff;
-    color: #000;
+    background-color: #000;
+    color: #fff;
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 6px;
@@ -118,7 +118,7 @@
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-right: 10px solid #fff; /* Arrow color */
+    border-right: 10px solid #000; /* Arrow color */
   }
 
   /* Hide tooltip */
@@ -134,7 +134,7 @@
     border-right: 0.15em solid black;
     white-space: nowrap;
     margin: 0 auto;
-    animation: typing 1.5s steps(26, end), blink-caret 0.5s step-end infinite;
+    animation: typing 1.5s steps(40, end), blink-caret 0.5s step-end infinite;
   }
 
   /* The typing effect */
@@ -154,7 +154,7 @@
       border-color: transparent;
     }
     50% {
-      border-color: orange;
+      border-color: orangered;
     }
   }
 
