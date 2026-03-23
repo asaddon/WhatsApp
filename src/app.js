@@ -20,11 +20,43 @@ class WAChatBox {
     chat_name: "Support",
     tooltipText: "We're on WhatsApp",
     tooltipTimeout: 5000,
+    allowedCountries: [],
+    blockedCountries: [],
   };
 
   constructor(config) {
     this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config };
+    this.config.allowedCountries = (this.config.allowedCountries || []).map((c) => c.toUpperCase());
+    this.config.blockedCountries = (this.config.blockedCountries || []).map((c) => c.toUpperCase());
     this.showTooltip = true;
+    this._initWithGeoCheck();
+  }
+
+  async _initWithGeoCheck() {
+    const { allowedCountries, blockedCountries } = this.config;
+
+    if (!allowedCountries.length && !blockedCountries.length) {
+      this.setupIframe();
+      this.bindEvents();
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.country.is/");
+      const { country } = await response.json();
+      const countryCode = country.toUpperCase();
+
+      if (blockedCountries.length && blockedCountries.includes(countryCode)) {
+        return;
+      }
+
+      if (allowedCountries.length && !allowedCountries.includes(countryCode)) {
+        return;
+      }
+    } catch (_) {
+      // If the geo check fails, fall back to showing the widget
+    }
+
     this.setupIframe();
     this.bindEvents();
   }

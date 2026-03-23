@@ -28,3 +28,27 @@ Configure with your settings
                         tooltipTimeout: 15000,
   });
  ```
+
+## Geo Restriction
+
+You can restrict the widget to only show for visitors from specific countries, or hide it for visitors from certain countries, using ISO 3166-1 alpha-2 country codes.
+
+### Show only for certain countries (`allowedCountries`)
+
+```javascript
+new WAChatBox({
+  link: "https://wa.me/123456789",
+  allowedCountries: ["US", "CA", "GB"], // Only show for USA, Canada, and UK
+});
+```
+
+### Hide for certain countries (`blockedCountries`)
+
+```javascript
+new WAChatBox({
+  link: "https://wa.me/123456789",
+  blockedCountries: ["IN", "PK"], // Hide for India and Pakistan
+});
+```
+
+> **Note:** Country detection relies on the visitor's IP address via [api.country.is](https://api.country.is/). If the detection request fails for any reason, the widget will be shown by default.
