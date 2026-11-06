@@ -23,9 +23,7 @@ module.exports = {
           {
             loader: "style-loader",
             options: {
-              insert: (element) => {
-                window.chatBoxStyle = element; // Custom insert function
-              },
+              insert: require.resolve("./src/insert-style.js"),
             },
           },
           {
@@ -34,7 +32,10 @@ module.exports = {
           "postcss-loader",
         ],
       },
-      { test: /\.svg$/, loader: "svg-inline-loader" },
+      {
+        test: /\.svg$/,
+        type: "asset/source",
+      },
     ],
   },
   plugins: [
