@@ -12,8 +12,8 @@ class WAChatBox {
   static DEFAULT_CONFIG = {
     link: "https://wa.me/919999999999",
     user: {
-      name: "Alice",
-      avatar: "https://randomuser.me/api/portraits/women/66.jpg",
+      name: "Support",
+      avatar: "",
       status: "Typically replies within an hour",
     },
     text: `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
@@ -26,10 +26,20 @@ class WAChatBox {
     popup: true,
   };
 
-  constructor(config) {
-    this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config };
+  constructor(config = {}) {
+    const user = { ...WAChatBox.DEFAULT_CONFIG.user, ...(config.user || {}) };
+    this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config, user };
     this.config.allowedCountries = (this.config.allowedCountries || []).map((c) => c.toUpperCase());
     this.config.blockedCountries = (this.config.blockedCountries || []).map((c) => c.toUpperCase());
+
+    const isDirect = this.config.popup === false || Boolean(this.config.directLink);
+    const tooltipExplicitlySet = "tooltip" in config || "showTooltip" in config || "tooltipText" in config;
+
+    // In direct mode (popup: false), default tooltip to false unless explicitly configured
+    if (isDirect && !tooltipExplicitlySet) {
+      this.config.tooltip = false;
+    }
+
     this.hasTooltip = Boolean(
       this.config.tooltip !== false &&
       this.config.showTooltip !== false &&
@@ -254,10 +264,12 @@ class WAChatBox {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative flex p-8 py-4">
-              <div className="relative">
-                {avatar && <img src={avatar} alt="Website Logo" className="h-16 rounded-full" loading="lazy" />}
-                <div className="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
-              </div>
+              {avatar ? (
+                <div className="relative">
+                  <img src={avatar} alt="Website Logo" className="h-16 rounded-full" loading="lazy" />
+                  <div className="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
+                </div>
+              ) : null}
               <div className="flex flex-col p-3">
                 <div className="name-head font-bold">{name}</div>
                 <div className="replies-in">{status}</div>
