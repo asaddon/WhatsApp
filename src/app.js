@@ -18,6 +18,7 @@ class WAChatBox {
     },
     text: `Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓`,
     chat_name: "Support",
+    tooltip: true,
     tooltipText: "We're on WhatsApp",
     tooltipTimeout: 5000,
     allowedCountries: [],
@@ -29,7 +30,14 @@ class WAChatBox {
     this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config };
     this.config.allowedCountries = (this.config.allowedCountries || []).map((c) => c.toUpperCase());
     this.config.blockedCountries = (this.config.blockedCountries || []).map((c) => c.toUpperCase());
-    this.showTooltip = Boolean(this.config.tooltipText);
+    this.hasTooltip = Boolean(
+      this.config.tooltip !== false &&
+      this.config.showTooltip !== false &&
+      this.config.tooltipText &&
+      String(this.config.tooltipText).trim() !== "" &&
+      this.config.tooltipTimeout !== 0
+    );
+    this.showTooltip = this.hasTooltip;
     this._initWithGeoCheck();
   }
 
@@ -68,15 +76,13 @@ class WAChatBox {
     this.iframe.src = "about:blank";
     this.iframe.setAttribute("allowtransparency", "true");
     
-    const hasTooltip = Boolean(this.showTooltip && this.config.tooltipText);
-
     Object.assign(this.iframe.style, {
       position: "fixed",
       bottom: "0",
       left: "0",
       maxWidth: "100%",
-      width: hasTooltip ? "300px" : "100px",
-      height: hasTooltip ? "150px" : "120px",
+      width: this.hasTooltip ? "300px" : "100px",
+      height: this.hasTooltip ? "150px" : "120px",
       border: "none", 
       outline: "none", 
       zIndex: "10",
@@ -98,8 +104,8 @@ class WAChatBox {
 
     document.addEventListener("click", handleDocumentClick);
 
-    // Cleanup tooltip after timeout
-    if (this.showTooltip && this.config.tooltipText) {
+    // Cleanup tooltip after timeout only if tooltip is present
+    if (this.hasTooltip) {
       setTimeout(() => {
         this.showTooltip = false;
         const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
@@ -215,15 +221,17 @@ class WAChatBox {
       });
     });
 
-    const waTooltip = iframeDocument.querySelector("#wa-tooltip");
-    waTooltip?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (hasPopup) {
-        this.toggleChatBox(iframeDocument);
-      } else {
-        this.openWhatsApp();
-      }
-    });
+    if (this.hasTooltip) {
+      const waTooltip = iframeDocument.querySelector("#wa-tooltip");
+      waTooltip?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (hasPopup) {
+          this.toggleChatBox(iframeDocument);
+        } else {
+          this.openWhatsApp();
+        }
+      });
+    }
 
     const waBox = iframeDocument.querySelector("#wa-box");
     waBox?.addEventListener("click", (e) => e.stopPropagation());
@@ -275,7 +283,11 @@ class WAChatBox {
           </div>
         </div>
         <div className="relative float-left my-4 flex cursor-pointer group">
-        <div className={`chaty-widget-i-title ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`} id="wa-tooltip"> <p>{tooltipText}</p> </div>     
+          {this.hasTooltip ? (
+            <div className={`chaty-widget-i-title ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`} id="wa-tooltip">
+              <p>{tooltipText}</p>
+            </div>
+          ) : null}     
           <div 
            className="relative flex cursor-pointer justify-center"
             id="toggleWaBox"

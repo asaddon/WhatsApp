@@ -51,6 +51,29 @@ new WAChatBox({
 });
 ```
 
+## Disabling the Tooltip
+
+The floating tooltip next to the button is enabled by default (`tooltipText: "We're on WhatsApp"`). You can disable the tooltip completely in any of the following ways with zero performance impact:
+
+```javascript
+// Method 1: Set tooltip to false
+new WAChatBox({
+  tooltip: false,
+});
+
+// Method 2: Leave tooltipText empty
+new WAChatBox({
+  tooltipText: "",
+});
+
+// Method 3: Set tooltipTimeout to 0
+new WAChatBox({
+  tooltipTimeout: 0,
+});
+```
+
+When the tooltip is disabled, no tooltip DOM elements, timers, or CSS typewriter animations are created, and the widget iframe initializes at its compact `100px` × `120px` size immediately.
+
 ## Geo Restriction
 
 You can restrict the widget to only show for visitors from specific countries, or hide it for visitors from certain countries, using ISO 3166-1 alpha-2 country codes.

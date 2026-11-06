@@ -515,6 +515,13 @@
       <div class="card">
         <div class="card-title">💡 Tooltip & Restrictions</div>
         <div class="form-group">
+          <label for="cfgTooltipEnabled">Tooltip Status</label>
+          <select id="cfgTooltipEnabled" onchange="updateConfig()">
+            <option value="true">Enabled (tooltip: true)</option>
+            <option value="false">Disabled (tooltip: false)</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="cfgTooltipText">Tooltip Message</label>
           <input type="text" id="cfgTooltipText" value="We're on WhatsApp" oninput="updateConfig()" />
         </div>
@@ -607,8 +614,9 @@
     function getFormConfig() {
       const allowedStr = document.getElementById('cfgAllowed').value.trim();
       const allowed = allowedStr ? allowedStr.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : [];
+      const tooltipEnabled = document.getElementById('cfgTooltipEnabled').value === 'true';
 
-      return {
+      const cfg = {
         link: document.getElementById('cfgLink').value.trim() || "https://wa.me/919999999999",
         popup: currentPopupMode,
         target: document.getElementById('cfgTarget').value,
@@ -619,11 +627,18 @@
         },
         chat_name: document.getElementById('cfgChatName').value.trim(),
         text: document.getElementById('cfgText').value,
+        tooltip: tooltipEnabled,
         tooltipText: document.getElementById('cfgTooltipText').value.trim(),
         tooltipTimeout: parseInt(document.getElementById('cfgTooltipTimeout').value, 10) || 0,
         allowedCountries: allowed,
         blockedCountries: [],
       };
+
+      if (!tooltipEnabled) {
+        cfg.tooltip = false;
+      }
+
+      return cfg;
     }
 
     function updateCodeSnippet(cfg) {
@@ -671,6 +686,7 @@
         document.getElementById('cfgStatus').value = "Typically replies within an hour";
         document.getElementById('cfgChatName').value = "Support";
         document.getElementById('cfgText').value = "Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓";
+        document.getElementById('cfgTooltipEnabled').value = "true";
         document.getElementById('cfgTooltipText').value = "We're on WhatsApp";
         document.getElementById('cfgTooltipTimeout').value = "5000";
         document.getElementById('cfgAllowed').value = "";
@@ -678,6 +694,7 @@
         setMode(false);
         document.getElementById('cfgLink').value = "https://wa.me/919999999999";
         document.getElementById('cfgTarget').value = "_blank";
+        document.getElementById('cfgTooltipEnabled').value = "true";
         document.getElementById('cfgTooltipText').value = "Click to Chat Directly on WhatsApp";
         document.getElementById('cfgTooltipTimeout').value = "8000";
       } else if (name === 'sales') {
@@ -689,10 +706,12 @@
         document.getElementById('cfgStatus').value = "Online • Instant reply";
         document.getElementById('cfgChatName').value = "Sales Department";
         document.getElementById('cfgText').value = "Hello! 🛍️ Looking for special pricing or a custom package quote? Chat with our sales team now!";
+        document.getElementById('cfgTooltipEnabled').value = "true";
         document.getElementById('cfgTooltipText').value = "Special Offer Available! 🎁";
         document.getElementById('cfgTooltipTimeout').value = "10000";
       } else if (name === 'minimal') {
         setMode(false);
+        document.getElementById('cfgTooltipEnabled').value = "false";
         document.getElementById('cfgTooltipText').value = "";
         document.getElementById('cfgTooltipTimeout').value = "0";
       }
