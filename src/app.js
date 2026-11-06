@@ -141,6 +141,7 @@ class WAChatBox {
 
   toggleChatBox = (iframeDocument, forcedAction) => {
     const waBox = iframeDocument.querySelector("#wa-box");
+    if (!waBox) return;
     const action = forcedAction || (waBox.classList.contains("show") ? "hide" : "show");
   
     if (action === "show") {
@@ -241,47 +242,50 @@ class WAChatBox {
   render = () => {
     const { user = {}, text, chat_name, tooltipText } = this.config;
     const { name = '', avatar = '', status = '' } = user;
+    const hasPopup = this.config.popup !== false && !this.config.directLink;
   
     return (
       <div className="fixed bottom-1 left-0 p-3" id="full-waBox" onClick={(e) => e.stopPropagation()}>
-        <div 
-          className="max-w-sm overflow-hidden rounded-lg bg-slate-900 shadow-lg" 
-          style="display: none" 
-          id="wa-box"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="relative flex p-8 py-4">
-            <div className="relative">
-              {avatar && <img src={avatar} alt="Website Logo" className="h-16 rounded-full" />}
-              <div className="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
+        {hasPopup ? (
+          <div 
+            className="max-w-sm overflow-hidden rounded-lg bg-slate-900 shadow-lg" 
+            style="display: none" 
+            id="wa-box"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex p-8 py-4">
+              <div className="relative">
+                {avatar && <img src={avatar} alt="Website Logo" className="h-16 rounded-full" loading="lazy" />}
+                <div className="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
+              </div>
+              <div className="flex flex-col p-3">
+                <div className="name-head font-bold">{name}</div>
+                <div className="replies-in">{status}</div>
+              </div>
+              <div className="text-bold absolute right-2 top-2">
+                <a id="toggleWaBox" className="cursor-pointer">
+                  <div className="w-4 h-4" dangerouslySetInnerHTML={{ __html: crossSvg }} />
+                </a>
+              </div>
             </div>
-            <div className="flex flex-col p-3">
-              <div className="name-head font-bold">{name}</div>
-              <div className="replies-in">{status}</div>
+            <div className="chat-bg relative bg-slate-900 p-7">
+              <div className="chat-box">
+                <div className="chat-name">{chat_name}</div>
+                <div className="chat-message" dangerouslySetInnerHTML={{ __html: text }}></div>
+                <div className="chat-time">{this.formatTime(new Date())}</div>
+              </div>
             </div>
-            <div className="text-bold absolute right-2 top-2">
-              <a id="toggleWaBox" className="cursor-pointer">
-                <div className="w-4 h-4" dangerouslySetInnerHTML={{ __html: crossSvg }} />
-              </a>
+            <div className="bg-slate-900">
+              <div>
+                <a className="hover:no-underline" id="open-wa">
+                  <div className="chat-btn">
+                    <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvg.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
+                    Start Chat
+                  </div>
+                </a> </div>
             </div>
           </div>
-          <div className="chat-bg relative bg-slate-900 p-7">
-            <div className="chat-box">
-              <div className="chat-name">{chat_name}</div>
-              <div className="chat-message" dangerouslySetInnerHTML={{ __html: text }}></div>
-              <div className="chat-time">{this.formatTime(new Date())}</div>
-            </div>
-          </div>
-          <div className="bg-slate-900">
-            <div>
-              <a className="hover:no-underline" id="open-wa">
-                <div className="chat-btn">
-                  <div className="w-4 h-4 mr-2" dangerouslySetInnerHTML={{ __html: whatsappSvg.replace(/fill="[^"]*"/g, `fill="#000000"`) }} />
-                  Start Chat
-                </div>
-              </a> </div>
-          </div>
-        </div>
+        ) : null}
         <div className="relative float-left my-4 flex cursor-pointer group">
           {this.hasTooltip ? (
             <div className={`chaty-widget-i-title ${this.showTooltip ? 'opacity-100' : 'opacity-0'}`} id="wa-tooltip">
