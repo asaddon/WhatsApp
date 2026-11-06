@@ -22,13 +22,14 @@ class WAChatBox {
     tooltipTimeout: 5000,
     allowedCountries: [],
     blockedCountries: [],
+    popup: true,
   };
 
   constructor(config) {
     this.config = { ...WAChatBox.DEFAULT_CONFIG, ...config };
     this.config.allowedCountries = (this.config.allowedCountries || []).map((c) => c.toUpperCase());
     this.config.blockedCountries = (this.config.blockedCountries || []).map((c) => c.toUpperCase());
-    this.showTooltip = true;
+    this.showTooltip = Boolean(this.config.tooltipText);
     this._initWithGeoCheck();
   }
 
@@ -67,13 +68,15 @@ class WAChatBox {
     this.iframe.src = "about:blank";
     this.iframe.setAttribute("allowtransparency", "true");
     
+    const hasTooltip = Boolean(this.showTooltip && this.config.tooltipText);
+
     Object.assign(this.iframe.style, {
       position: "fixed",
       bottom: "0",
       left: "0",
       maxWidth: "100%",
-      width: "300px",
-      height: "150px",
+      width: hasTooltip ? "300px" : "100px",
+      height: hasTooltip ? "150px" : "120px",
       border: "none", 
       outline: "none", 
       zIndex: "10",
@@ -96,16 +99,18 @@ class WAChatBox {
     document.addEventListener("click", handleDocumentClick);
 
     // Cleanup tooltip after timeout
-  setTimeout(() => {
-  this.showTooltip = false;
-  const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
-  tooltip?.remove();
-  // Resize the iframe to 100px by 120px only if the chat box is not open
-  if (!this.iframe.contentDocument?.querySelector("#wa-box")?.classList.contains("show")) {
-    this.iframe.style.width = "100px";
-    this.iframe.style.height = "120px";
-  }
-}, this.config.tooltipTimeout);
+    if (this.showTooltip && this.config.tooltipText) {
+      setTimeout(() => {
+        this.showTooltip = false;
+        const tooltip = this.iframe.contentDocument?.querySelector("#wa-tooltip");
+        tooltip?.remove();
+        // Resize the iframe to 100px by 120px only if the chat box is not open
+        if (!this.iframe.contentDocument?.querySelector("#wa-box")?.classList.contains("show")) {
+          this.iframe.style.width = "100px";
+          this.iframe.style.height = "120px";
+        }
+      }, this.config.tooltipTimeout);
+    }
   }
 
   formatTime(date) {
@@ -177,26 +182,47 @@ class WAChatBox {
     this.setupIframeEventListeners(iframeDocument);
   };
 
+  openWhatsApp() {
+    if (!this.config.link) return;
+    const hasPopup = this.config.popup !== false && !this.config.directLink;
+    const target = this.config.target || this.config.linkTarget || (hasPopup ? "popup" : "_blank");
+    if (target === "popup") {
+      window.open(this.config.link, "popup", "width=600,height=600");
+    } else {
+      window.open(this.config.link, target);
+    }
+  }
+
   setupIframeEventListeners(iframeDocument) {
     iframeDocument.addEventListener("click", (e) => this.handleClickOutside(e, iframeDocument));
 
     const openWa = iframeDocument.querySelector("#open-wa");
     openWa?.addEventListener("click", (e) => {
       e.stopPropagation();
-      this.config.link && window.open(this.config.link, "popup", "width=600,height=600");
+      this.openWhatsApp();
     });
+
+    const hasPopup = this.config.popup !== false && !this.config.directLink;
 
     iframeDocument.querySelectorAll("#toggleWaBox").forEach(el => {
       el.addEventListener("click", (e) => {
         e.stopPropagation();
-        this.toggleChatBox(iframeDocument);
+        if (hasPopup) {
+          this.toggleChatBox(iframeDocument);
+        } else {
+          this.openWhatsApp();
+        }
       });
     });
 
     const waTooltip = iframeDocument.querySelector("#wa-tooltip");
     waTooltip?.addEventListener("click", (e) => {
       e.stopPropagation();
-      this.toggleChatBox(iframeDocument);
+      if (hasPopup) {
+        this.toggleChatBox(iframeDocument);
+      } else {
+        this.openWhatsApp();
+      }
     });
 
     const waBox = iframeDocument.querySelector("#wa-box");

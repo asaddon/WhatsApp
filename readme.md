@@ -26,8 +26,30 @@ Configure with your settings
                         text: "Hey There 👋<br>Let's talk to get a Price Quote!",
                         tooltipText: "Hi, I am here to assist you!",
                         tooltipTimeout: 15000,
+                        popup: true, // Set to false to directly open the WhatsApp link without showing the chat popup
   });
  ```
+
+## Direct Link Mode (`popup`)
+
+By default (`popup: true`), pressing the WhatsApp button opens an in-page chat box popup with the user card and a "Start Chat" button. If you prefer to bypass this popup and directly open the WhatsApp link when clicking the button, set `popup: false`:
+
+```javascript
+new WAChatBox({
+  link: "https://wa.me/123456789",
+  popup: false, // Directly opens WhatsApp when button/tooltip is clicked
+});
+```
+
+You can also customize the link opening target using `target` (defaults to `"_blank"` when `popup: false`, or `"popup"` window when `popup: true`):
+
+```javascript
+new WAChatBox({
+  link: "https://wa.me/123456789",
+  popup: false,
+  target: "_blank", // "_blank" (default), "popup", or "_self"
+});
+```
 
 ## Geo Restriction
 
