@@ -65,6 +65,7 @@ class WAChatBox {
     this.iframe = document.createElement("iframe");
     this.iframe.onload = this.iframeLoaded;
     this.iframe.src = "about:blank";
+    this.iframe.setAttribute("allowtransparency", "true");
     
     Object.assign(this.iframe.style, {
       position: "fixed",
@@ -77,6 +78,7 @@ class WAChatBox {
       outline: "none", 
       zIndex: "10",
       boxShadow: "none", 
+      backgroundColor: "transparent",
       willChange: "transform, opacity",
    });
    
@@ -168,6 +170,7 @@ class WAChatBox {
     const iframeDocument = this.iframe.contentDocument;
     if (!iframeDocument) return;
 
+    iframeDocument.body.style.backgroundColor = "transparent";
     iframeDocument.body.append(this.render());
     iframeDocument.body.append(chatBoxStyle);
 
@@ -253,7 +256,7 @@ class WAChatBox {
             onClick={(e) => e.stopPropagation()}
           >
             
-            <div className="chaty-widget-i" id="chaty-animation-0">
+            <div className="chaty-widget-i">
               <div className="chat-whatsapp-icon">
               <div className="animation-svg chaty-animation-fade" dangerouslySetInnerHTML={{ __html: whatsappIcon }} />
               <div className="unread-indicator"></div>

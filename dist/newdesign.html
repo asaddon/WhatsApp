@@ -59,28 +59,6 @@
       border: 2px solid white; /* Optional: Add a white border */
     }
 
-    /* Shockwave effect */
-    #chaty-animation-0:after,
-    #chaty-animation-0:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      border-radius: 50%;
-    }
-
-    #chaty-animation-0:after {
-      -webkit-animation: shockwave 1s 0.65s ease-out infinite;
-      animation: shockwave 1s 0.65s ease-out infinite;
-    }
-
-    #chaty-animation-0:before {
-      -webkit-animation: shockwave 1s 0.5s ease-out infinite;
-      animation: shockwave 1s 0.5s ease-out infinite;
-    }
-
     /* Tooltip styling */
     .chaty-widget-i-title {
       position: fixed; /* Use fixed positioning to separate from the button */
@@ -205,37 +183,6 @@
       }
     }
 
-    /* Shockwave Animation */
-    @-webkit-keyframes shockwave {
-      0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
-      }
-      95% {
-        box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
-      }
-      100% {
-        -webkit-transform: scale(2.25);
-        transform: scale(2.25);
-      }
-    }
-
-    @keyframes shockwave {
-      0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
-      }
-      95% {
-        box-shadow: 0 0 50px transparent, inset 0 0 30px transparent;
-      }
-      100% {
-        -webkit-transform: scale(2.25);
-        transform: scale(2.25);
-      }
-    }
-
     /* Jump Animation */
     .btn--jump.is-active {
       -webkit-animation: 0.4s jump ease infinite alternate;
@@ -295,7 +242,7 @@
 <body>
   <!-- WhatsApp Chat Widget -->
   <div class="chaty-widget">
-    <div class="chaty-widget-i btn--jump is-active" id="chaty-animation-0">
+    <div class="chaty-widget-i btn--jump is-active">
       <a class="set-url-target" rel="noopener" target="_blank" href="https://web.whatsapp.com/send?phone=9221111225111">
         <span class="sr-only">Hi, I am here to assist you.</span>
         <div class="animation-svg chaty-animation-fade">
