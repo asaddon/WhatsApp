@@ -9,8 +9,15 @@ window.createElement = (tagName, attrs = {}, ...children) => {
   }
 
   for (const child of children) {
-    if (Array.isArray(child)) elem.append(...child);
-    else elem.append(child);
+    if (child === null || child === undefined || typeof child === "boolean" || child === "") {
+      continue;
+    }
+    if (Array.isArray(child)) {
+      const valid = child.filter(c => c !== null && c !== undefined && typeof c !== "boolean" && c !== "");
+      if (valid.length) elem.append(...valid);
+    } else {
+      elem.append(child);
+    }
   }
   return elem;
 };

@@ -1,118 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>WhatsApp Chat Box - Local Test</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-        background: #0f172a;
-        color: #f8fafc;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-      }
-      .panel {
-        background: rgba(30, 41, 59, 0.85);
-        backdrop-filter: blur(8px);
-        padding: 24px 32px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-        max-width: 480px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      h1 {
-        font-size: 20px;
-        margin-top: 0;
-        margin-bottom: 8px;
-        color: #49e670;
-      }
-      p {
-        font-size: 14px;
-        line-height: 1.5;
-        color: #94a3b8;
-        margin-bottom: 16px;
-      }
-      .btn-group {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 16px;
-      }
-      button {
-        flex: 1;
-        padding: 10px 14px;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 13px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      .btn-active {
-        background: #49e670;
-        color: #0f172a;
-      }
-      .btn-inactive {
-        background: #334155;
-        color: #cbd5e1;
-      }
-      .status {
-        font-size: 12px;
-        color: #38bdf8;
-        font-family: monospace;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="panel">
-      <h1>WhatsApp Widget Test Page</h1>
-      <p>Use the buttons below to re-initialize the widget with different configurations without needing to reload or commit anything.</p>
-      <div class="btn-group">
-        <button id="btnPopup" class="btn-active" onclick="switchMode(true)">Popup Mode (popup: true)</button>
-        <button id="btnDirect" class="btn-inactive" onclick="switchMode(false)">Direct Link Mode (popup: false)</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp Chat Box - Live Demo & Playground</title>
+  <style>
+    :root {
+      --wa-green: #25D366;
+      --wa-green-hover: #20bd5a;
+      --wa-dark-bg: #0b1120;
+      --wa-card-bg: rgba(17, 24, 39, 0.85);
+      --wa-border: rgba(255, 255, 255, 0.1);
+      --wa-text: #f3f4f6;
+      --wa-text-muted: #9ca3af;
+      --wa-accent: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 140px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--wa-dark-bg);
+      color: var(--wa-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(37, 211, 102, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.06) 0%, transparent 40%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 12px 0 6px;
+    }
+
+    .badge-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 211, 102, 0.15);
+      color: var(--wa-green);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(37, 211, 102, 0.25);
+    }
+
+    .badge-bar .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--wa-green);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    p.subtitle {
+      margin: 0;
+      font-size: 15px;
+      color: var(--wa-text-muted);
+      line-height: 1.5;
+    }
+
+    /* Presets bar */
+    .presets-card {
+      background: var(--wa-card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--wa-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .presets-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--wa-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .preset-btn {
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--wa-border);
+      color: var(--wa-text);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preset-btn:hover {
+      background: rgba(37, 211, 102, 0.15);
+      border-color: rgba(37, 211, 102, 0.4);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Mode Banner */
+    .mode-selector {
+      background: var(--wa-card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--wa-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mode-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mode-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .mode-toggle-group {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--wa-border);
+      width: 100%;
+    }
+
+    .mode-toggle-btn {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--wa-text-muted);
+      background: transparent;
+    }
+
+    .mode-toggle-btn span.desc {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    .mode-toggle-btn.active {
+      background: var(--wa-green);
+      color: #0b1120;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+    }
+
+    .mode-toggle-btn.active span.desc {
+      color: #0b1120;
+      font-weight: 500;
+    }
+
+    /* Options Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--wa-card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--wa-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--wa-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--wa-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--wa-green);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 64px;
+    }
+
+    .avatar-presets {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 2px;
+    }
+
+    .avatar-thumb {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .avatar-thumb:hover,
+    .avatar-thumb.selected {
+      border-color: var(--wa-green);
+      transform: scale(1.1);
+    }
+
+    /* Code Box */
+    .code-card {
+      background: #050811;
+      border: 1px solid var(--wa-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .code-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--wa-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .copy-btn {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--wa-border);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .copy-btn:hover {
+      background: var(--wa-green);
+      color: #0b1120;
+    }
+
+    pre {
+      margin: 0;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #38bdf8;
+    }
+
+    /* Sticky Bottom Actions */
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--wa-card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--wa-border);
+      border-radius: 12px;
+      padding: 14px 20px;
+    }
+
+    .apply-btn {
+      padding: 10px 24px;
+      background: var(--wa-green);
+      color: #0b1120;
+      font-weight: 700;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .apply-btn:hover {
+      background: var(--wa-green-hover);
+      transform: translateY(-1px);
+    }
+
+    .reset-btn {
+      padding: 10px 18px;
+      background: transparent;
+      color: var(--wa-text-muted);
+      font-size: 13px;
+      border: 1px solid var(--wa-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .tip {
+      font-size: 13px;
+      color: var(--wa-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tip strong {
+      color: var(--wa-green);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge-bar">
+        <span class="dot"></span>
+        <span>WhatsApp Chat Box Demo</span>
       </div>
-      <div class="status" id="statusText">Current mode: popup: true (opens chat card on click)</div>
+      <h1>Interactive Configuration Playground</h1>
+      <p class="subtitle">Customize every parameter in real time, test both Popup & Direct modes, and generate embed code instantly.</p>
     </div>
 
-    <script src="WhatsAppChatBox.min.js"></script>
-    <script>
-      let currentWidget = null;
+    <!-- Presets -->
+    <div class="presets-card">
+      <span class="presets-title">Quick Presets:</span>
+      <button class="preset-btn" onclick="loadPreset('default')">
+        💬 Default Support
+      </button>
+      <button class="preset-btn" onclick="loadPreset('direct')">
+        ⚡ Direct Link (No Popup)
+      </button>
+      <button class="preset-btn" onclick="loadPreset('sales')">
+        🛍️ Sales Assistant
+      </button>
+      <button class="preset-btn" onclick="loadPreset('minimal')">
+        ✨ Minimal (No Tooltip)
+      </button>
+    </div>
 
-      function initWidget(popup) {
-        // Remove existing widget iframe if any
-        const existingIframe = document.querySelector("iframe");
-        if (existingIframe) existingIframe.remove();
+    <!-- Mode Selector Banner -->
+    <div class="mode-selector">
+      <div class="mode-header">
+        <span class="mode-title">Operation Mode</span>
+        <span class="tip">Look at the <strong>bottom-left</strong> to interact with the widget!</span>
+      </div>
+      <div class="mode-toggle-group">
+        <button id="modePopupBtn" class="mode-toggle-btn active" onclick="setMode(true)">
+          <span>💬 Popup Chat Box Mode (popup: true)</span>
+          <span class="desc">Opens an in-page chat box with agent details, message, and "Start Chat" button</span>
+        </button>
+        <button id="modeDirectBtn" class="mode-toggle-btn" onclick="setMode(false)">
+          <span>⚡ Direct Link Mode (popup: false)</span>
+          <span class="desc">Bypasses the in-page chat box and immediately opens the WhatsApp link</span>
+        </button>
+      </div>
+    </div>
 
-        currentWidget = new window.WAChatBox({
-          link: "https://wa.me/919999999999",
-          popup: popup,
-          user: {
-            name: "Alice",
-            avatar: "https://randomuser.me/api/portraits/women/66.jpg",
-            status: "Typically replies within an hour",
-          },
-          text: "Hey There 👋<br><br>Testing the WhatsApp chatbox locally!",
-          tooltipText: popup ? "Chat with Alice" : "Open WhatsApp Directly",
-          tooltipTimeout: 8000,
+    <!-- Settings Grid -->
+    <div class="grid">
+      <!-- Link & Target -->
+      <div class="card">
+        <div class="card-title">🔗 WhatsApp Destination</div>
+        <div class="form-group">
+          <label for="cfgLink">WhatsApp URL / Phone Link</label>
+          <input type="text" id="cfgLink" value="https://wa.me/919999999999" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgTarget">Link Target</label>
+          <select id="cfgTarget" onchange="updateConfig()">
+            <option value="_blank">New Tab (_blank)</option>
+            <option value="popup">600x600 Window (popup)</option>
+            <option value="_self">Same Tab (_self)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Agent Profile -->
+      <div class="card">
+        <div class="card-title">👤 Agent Profile</div>
+        <div class="form-group">
+          <label for="cfgName">Agent Name</label>
+          <input type="text" id="cfgName" value="Alice" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgStatus">Status Message</label>
+          <input type="text" id="cfgStatus" value="Typically replies within an hour" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgAvatar">Avatar Image URL</label>
+          <input type="text" id="cfgAvatar" value="https://randomuser.me/api/portraits/women/66.jpg" oninput="updateConfig()" />
+          <div class="avatar-presets">
+            <span style="font-size: 11px; color: var(--wa-text-muted);">Quick:</span>
+            <img class="avatar-thumb" src="https://randomuser.me/api/portraits/women/66.jpg" onclick="setAvatar(this.src)" title="Alice" />
+            <img class="avatar-thumb" src="https://randomuser.me/api/portraits/men/32.jpg" onclick="setAvatar(this.src)" title="Bob" />
+            <img class="avatar-thumb" src="https://randomuser.me/api/portraits/women/44.jpg" onclick="setAvatar(this.src)" title="Sarah" />
+            <img class="avatar-thumb" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" onclick="setAvatar(this.src)" title="Support" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Content -->
+      <div class="card">
+        <div class="card-title">💬 Chat Content</div>
+        <div class="form-group">
+          <label for="cfgChatName">Chat Header Name</label>
+          <input type="text" id="cfgChatName" value="Support" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgText">Greeting Message (HTML supported)</label>
+          <textarea id="cfgText" oninput="updateConfig()">Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓</textarea>
+        </div>
+      </div>
+
+      <!-- Tooltip & Geo Restrictions -->
+      <div class="card">
+        <div class="card-title">💡 Tooltip & Restrictions</div>
+        <div class="form-group">
+          <label for="cfgTooltipText">Tooltip Message</label>
+          <input type="text" id="cfgTooltipText" value="We're on WhatsApp" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgTooltipTimeout">Tooltip Timeout (ms, 0 to disable)</label>
+          <input type="number" id="cfgTooltipTimeout" value="5000" step="1000" min="0" oninput="updateConfig()" />
+        </div>
+        <div class="form-group">
+          <label for="cfgAllowed">Allowed Countries (e.g. US, CA - empty = all)</label>
+          <input type="text" id="cfgAllowed" placeholder="Leave empty for all" oninput="updateConfig()" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions & Live Apply -->
+    <div class="actions-bar">
+      <div class="tip">
+        <span>✅ Widget updates automatically on change.</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="reset-btn" onclick="loadPreset('default')">Reset to Defaults</button>
+        <button class="apply-btn" onclick="rebuildWidget()">Re-apply Widget</button>
+      </div>
+    </div>
+
+    <!-- Generated Code Snippet -->
+    <div class="code-card">
+      <div class="code-header">
+        <span class="code-title">📋 Live Generated Code Snippet</span>
+        <button class="copy-btn" id="copyBtn" onclick="copySnippet()">Copy Code</button>
+      </div>
+      <pre><code id="codeSnippet"></code></pre>
+    </div>
+  </div>
+
+  <!-- Smart Multi-source Loader -->
+  <script>
+    (function() {
+      function loadChatBoxScript(callback) {
+        if (window.WAChatBox) {
+          callback();
+          return;
+        }
+        const sources = [
+          './WhatsAppChatBox.min.js',
+          '../dist/WhatsAppChatBox.min.js',
+          'WhatsAppChatBox.min.js',
+          'https://cdn.jsdelivr.net/gh/asaddon/WhatsApp@refs/heads/main/dist/WhatsAppChatBox.min.js'
+        ];
+        let idx = 0;
+        function tryNext() {
+          if (idx >= sources.length) {
+            console.error("Failed to load WhatsAppChatBox script from any source.");
+            return;
+          }
+          const s = document.createElement('script');
+          s.src = sources[idx++];
+          s.onload = callback;
+          s.onerror = tryNext;
+          document.head.appendChild(s);
+        }
+        tryNext();
+      }
+
+      window.initDemo = function() {
+        loadChatBoxScript(function() {
+          rebuildWidget();
         });
+      };
+    })();
+  </script>
 
-        document.getElementById("btnPopup").className = popup ? "btn-active" : "btn-inactive";
-        document.getElementById("btnDirect").className = !popup ? "btn-active" : "btn-inactive";
-        document.getElementById("statusText").innerText = popup
-          ? "Current mode: popup: true (clicking button opens chat card)"
-          : "Current mode: popup: false (clicking button directly opens link)";
+  <!-- Interactive Demo Logic -->
+  <script>
+    let currentPopupMode = true;
+    let widgetInstance = null;
+
+    function setMode(isPopup) {
+      currentPopupMode = isPopup;
+      document.getElementById('modePopupBtn').className = isPopup ? 'mode-toggle-btn active' : 'mode-toggle-btn';
+      document.getElementById('modeDirectBtn').className = !isPopup ? 'mode-toggle-btn active' : 'mode-toggle-btn';
+      updateConfig();
+    }
+
+    function setAvatar(url) {
+      document.getElementById('cfgAvatar').value = url;
+      updateConfig();
+    }
+
+    function getFormConfig() {
+      const allowedStr = document.getElementById('cfgAllowed').value.trim();
+      const allowed = allowedStr ? allowedStr.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : [];
+
+      return {
+        link: document.getElementById('cfgLink').value.trim() || "https://wa.me/919999999999",
+        popup: currentPopupMode,
+        target: document.getElementById('cfgTarget').value,
+        user: {
+          name: document.getElementById('cfgName').value.trim(),
+          avatar: document.getElementById('cfgAvatar').value.trim(),
+          status: document.getElementById('cfgStatus').value.trim(),
+        },
+        chat_name: document.getElementById('cfgChatName').value.trim(),
+        text: document.getElementById('cfgText').value,
+        tooltipText: document.getElementById('cfgTooltipText').value.trim(),
+        tooltipTimeout: parseInt(document.getElementById('cfgTooltipTimeout').value, 10) || 0,
+        allowedCountries: allowed,
+        blockedCountries: [],
+      };
+    }
+
+    function updateCodeSnippet(cfg) {
+      const snippet = `new WAChatBox(${JSON.stringify(cfg, null, 2)});`;
+      document.getElementById('codeSnippet').innerText = snippet;
+    }
+
+    function rebuildWidget() {
+      if (!window.WAChatBox) return;
+
+      // Remove existing widget iframe if any
+      const existingIframe = document.querySelector('iframe');
+      if (existingIframe) existingIframe.remove();
+
+      const cfg = getFormConfig();
+      updateCodeSnippet(cfg);
+
+      widgetInstance = new window.WAChatBox(cfg);
+    }
+
+    let debounceTimer = null;
+    function updateConfig() {
+      const cfg = getFormConfig();
+      updateCodeSnippet(cfg);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(rebuildWidget, 250);
+    }
+
+    function copySnippet() {
+      const code = document.getElementById('codeSnippet').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.innerText = "✓ Copied!";
+        setTimeout(() => { btn.innerText = "Copy Code"; }, 2000);
+      });
+    }
+
+    function loadPreset(name) {
+      if (name === 'default') {
+        setMode(true);
+        document.getElementById('cfgLink').value = "https://wa.me/919999999999";
+        document.getElementById('cfgTarget').value = "_blank";
+        document.getElementById('cfgName').value = "Alice";
+        document.getElementById('cfgAvatar').value = "https://randomuser.me/api/portraits/women/66.jpg";
+        document.getElementById('cfgStatus').value = "Typically replies within an hour";
+        document.getElementById('cfgChatName').value = "Support";
+        document.getElementById('cfgText').value = "Hey There 👋<br><br>I'm here to help, so let me know what's up and I'll be happy to find a solution 🤓";
+        document.getElementById('cfgTooltipText').value = "We're on WhatsApp";
+        document.getElementById('cfgTooltipTimeout').value = "5000";
+        document.getElementById('cfgAllowed').value = "";
+      } else if (name === 'direct') {
+        setMode(false);
+        document.getElementById('cfgLink').value = "https://wa.me/919999999999";
+        document.getElementById('cfgTarget').value = "_blank";
+        document.getElementById('cfgTooltipText').value = "Click to Chat Directly on WhatsApp";
+        document.getElementById('cfgTooltipTimeout').value = "8000";
+      } else if (name === 'sales') {
+        setMode(true);
+        document.getElementById('cfgLink').value = "https://wa.me/919999999999";
+        document.getElementById('cfgTarget').value = "_blank";
+        document.getElementById('cfgName').value = "Sarah (Sales)";
+        document.getElementById('cfgAvatar').value = "https://randomuser.me/api/portraits/women/44.jpg";
+        document.getElementById('cfgStatus').value = "Online • Instant reply";
+        document.getElementById('cfgChatName').value = "Sales Department";
+        document.getElementById('cfgText').value = "Hello! 🛍️ Looking for special pricing or a custom package quote? Chat with our sales team now!";
+        document.getElementById('cfgTooltipText').value = "Special Offer Available! 🎁";
+        document.getElementById('cfgTooltipTimeout').value = "10000";
+      } else if (name === 'minimal') {
+        setMode(false);
+        document.getElementById('cfgTooltipText').value = "";
+        document.getElementById('cfgTooltipTimeout').value = "0";
       }
+      updateConfig();
+    }
 
-      function switchMode(popup) {
-        initWidget(popup);
-      }
-
-      // Initialize with popup: true by default
-      initWidget(true);
-    </script>
-  </body>
+    // Start
+    window.addEventListener('DOMContentLoaded', () => {
+      window.initDemo();
+    });
+  </script>
+</body>
 </html>
